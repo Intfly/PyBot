@@ -1,27 +1,22 @@
-#Import the required libraries
-from tkinter import *
-from tkinter import ttk
-
-#Create an instance of Tkinter Frame
-win = Tk()
-
-#Set the geometry of Tkinter Frame
-win.geometry("700x350")
-
-#Define a function for exit
-def exit_program():
-   win.destroy()
-
-
-#Add a canvas widget
-canvas = Canvas(win, width= 350)
-
-#Add a Label widget in the Canvas
-label = Label(canvas, text= "Click the Button to Exit", font= ('Helvetica 17 bold'))
-label.pack(pady= 30)
-
-#Create a button in canvas widget
-ttk.Button(canvas, text= "Exit", command= exit_program).pack()
-canvas.pack()
-
-win.mainloop()
+# importing only those functions
+# which are needed
+from tkinter import * 
+from tkinter.ttk import *
+  
+# creating tkinter window
+root = Tk()
+  
+# Creating button. In this destroy method is passed
+# as command, so as soon as button 1 is pressed root
+# window will be destroyed
+btn1 = Button(root, text ="Button 1", command = root.destroy)
+btn1.pack(pady = 10)
+  
+# Creating button. In this destroy method is passed
+# as command, so as soon as button 2 is pressed
+# button 1 will be destroyed
+btn2 = Button(root, text ="Button 2", command = btn1.destroy)
+btn2.pack(pady = 10)
+  
+# infinite loop
+mainloop()

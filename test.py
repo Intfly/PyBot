@@ -1,22 +1,25 @@
-# importing only those functions
-# which are needed
-from tkinter import * 
-from tkinter.ttk import *
-  
-# creating tkinter window
-root = Tk()
-  
-# Creating button. In this destroy method is passed
-# as command, so as soon as button 1 is pressed root
-# window will be destroyed
-btn1 = Button(root, text ="Button 1", command = root.destroy)
-btn1.pack(pady = 10)
-  
-# Creating button. In this destroy method is passed
-# as command, so as soon as button 2 is pressed
-# button 1 will be destroyed
-btn2 = Button(root, text ="Button 2", command = btn1.destroy)
-btn2.pack(pady = 10)
-  
-# infinite loop
-mainloop()
+#Import the required libraries
+from tkinter import *
+
+#Create an instance of tkinter frame
+win= Tk()
+
+#Set the geometry of frame
+win.geometry("600x250")
+
+#Create a frame
+frame = Frame(win)
+frame.pack(side="top", expand=True, fill="both")
+
+#Create a text label
+Label(frame,text="Enter the Password", font=('Helvetica',20)).pack(pady=20)
+
+def clear_frame():
+   for widgets in frame.winfo_children():
+      widgets.destroy()
+
+#Create a button to close the window
+Button(frame, text="Clear", font=('Helvetica bold', 10), command=
+clear_frame).pack(pady=20)
+
+win.mainloop()

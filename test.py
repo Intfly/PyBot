@@ -11,12 +11,15 @@ win.geometry("600x250")
 frame = Frame(win)
 frame.pack(side="top", expand=True, fill="both")
 
+can = Canvas(frame,bg="white",width=600,height=250)
+can.place(x=0,y=0)
 #Create a text label
-Label(frame,text="Enter the Password", font=('Helvetica',20)).pack(pady=20)
+xi=Label(frame,text="Enter the Password", font=('Helvetica',20))
+xi.place(x=100,y=100)
 
 def clear_frame():
    for widgets in frame.winfo_children():
-      widgets.destroy()
+      print(widgets)
 
 #Create a button to close the window
 Button(frame, text="Clear", font=('Helvetica bold', 10), command=

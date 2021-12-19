@@ -16,13 +16,13 @@ can.place(x=-2,y=-2)
 #variables utiles dans le code
 olhelper = 0
 next_helper = 0
-home_hlp = 0 
+home_hlp = 0
 def menu_home():
     global home_hlp
     if home_hlp !=0:  
         for widgets in frame.winfo_children():
-            widgets.destroy()
-    can.place(x=-2,y=-2)
+           if widgets.winfo_class() != 'Canvas':
+              widgets.destroy()
     can.delete(ALL)
     button_home_act_n.place(x=460,y=270)
     button_home_act_t.place(x=460,y=150)
@@ -41,8 +41,8 @@ def tuto_1():
     global olhelper
     global next_helper
     olhelper,next_helper = 1,1
-    can.delete(ALL)
     for widgets in frame.winfo_children():
+        if widgets.winfo_class() != 'Canvas':
             widgets.destroy()
     can.place(x=-2,y=-2)
     can.create_image(0,0,image=linear_gradient_1)
@@ -53,7 +53,9 @@ def tuto_1():
     button_next.place(x=575,y=450)
 
 def tuto_2():
-    print(11)
+    for widgets in frame.winfo_children():
+        if widgets.winfo_class() != 'Canvas':
+            widgets.destroy()
 
 #premier menu en cliquant sur "nouveau" 
 def nouveau_1():

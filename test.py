@@ -19,7 +19,8 @@ xi.place(x=100,y=100)
 
 def clear_frame():
    for widgets in frame.winfo_children():
-      print(widgets)
+      if widgets.winfo_class() != 'Canvas':
+         widgets.destroy()
 
 #Create a button to close the window
 Button(frame, text="Clear", font=('Helvetica bold', 10), command=

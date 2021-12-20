@@ -51,6 +51,7 @@ def tuto_1():
     button_link.place(x=150,y=140)
     can.create_image(250,350, image=DDPconnexion_resized)
     button_next.place(x=575,y=450)
+    button_retour_home.place(x=10,y=20)
 
 def tuto_2():
     for widgets in frame.winfo_children():
@@ -87,10 +88,11 @@ button_next_img = PhotoImage(file="PyBot-NSI-1ere\images\-button-next.png")
 button_next_img_resized = button_next_img.subsample(3)
 
 #création des boutons
+button_retour_home = Button(frame,image = button_open_link,width= 120,height=25,relief=FLAT,bg="#6f60c0",fg="white",activeforeground="white",borderwidth=0,activebackground="white",highlightbackground="white",text = 'Menu',compound="center",font=Font_button,command=menu_home)
 button_home_act_t = Button(frame,image = button_home_img_resized,width= 180,height=40,relief=FLAT,bg="white",fg="white",activeforeground="white",borderwidth=0,activebackground="white",highlightbackground="white",text = 'tutoriel',compound="center",font=Font_button,command=tuto_1)
 button_home_act_n = Button(frame,image = button_home_img_resized,width= 180,height=40,relief=FLAT,bg="white",fg="white",activeforeground="white",borderwidth=0,activebackground="white",highlightbackground="white",text = 'nouveau',compound="center",font=Font_button,command=nouveau_1)
-button_link= Button(can,image = button_open_link,width= 150,height=25,relief=FLAT,bg="#6f60c0",fg="white",activeforeground="white",borderwidth=0,activebackground="white",highlightbackground="white",text = 'cliquez ici',compound="center",font=Font_button,command=open_link)
-button_next = Button(can,image = button_next_img_resized,width= 150,height=25,relief=FLAT,bg="#7159b5",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#7159b5",highlightbackground="#7159b5",text = 'suivant',compound="center",font=Font_button,command=interface_suivante)
+button_link= Button(frame,image = button_open_link,width= 150,height=25,relief=FLAT,bg="#6f60c0",fg="white",activeforeground="white",borderwidth=0,activebackground="white",highlightbackground="white",text = 'cliquez ici',compound="center",font=Font_button,command=open_link)
+button_next = Button(frame,image = button_next_img_resized,width= 150,height=25,relief=FLAT,bg="#7159b5",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#7159b5",highlightbackground="#7159b5",text = 'suivant',compound="center",font=Font_button,command=interface_suivante)
 
 menu_home()
 fen.mainloop()

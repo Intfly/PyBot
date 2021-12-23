@@ -7,23 +7,27 @@ fen.geometry("750x500")
 fen.title("PyBot")
 
 
-frame = Frame(fen)
-frame.pack(side="top", expand=True, fill="both")
+frame_p = Frame(fen)
+frame_p.pack(side="top", expand=True, fill="both")
 
-can = Canvas(frame,bg="white", height=500, width=750)
+can = Canvas(frame_p,bg="white", height=500, width=750)
 can.place(x=-2,y=-2)
 
 #variables utiles dans le code
 olhelper = 0
 next_helper = 0
 home_hlp = 0
+
+
 def menu_home():
     global home_hlp
     if home_hlp !=0:  
-        for widgets in frame.winfo_children():
+        for widgets in frame_p.winfo_children():
            if widgets.winfo_class() != 'Canvas':
               widgets.destroy()
     can.delete(ALL)
+    button_home_act_t = Button(frame_p,image = button_home_img_resized,width= 180,height=40,relief=FLAT,bg="white",fg="white",activeforeground="white",borderwidth=0,activebackground="white",highlightbackground="white",text = 'tutoriel',compound="center",font=Font_button,command=tuto_1)
+    button_home_act_n = Button(frame_p,image = button_home_img_resized,width= 180,height=40,relief=FLAT,bg="white",fg="white",activeforeground="white",borderwidth=0,activebackground="white",highlightbackground="white",text = 'nouveau',compound="center",font=Font_button,command=nouveau_1)
     button_home_act_n.place(x=460,y=270)
     button_home_act_t.place(x=460,y=150)
     can.create_image(-40,0,image=linear_gradent_home)
@@ -41,27 +45,39 @@ def tuto_1():
     global olhelper
     global next_helper
     olhelper,next_helper = 1,1
-    for widgets in frame.winfo_children():
+    can.delete(ALL)
+    for widgets in frame_p.winfo_children():
         if widgets.winfo_class() != 'Canvas':
             widgets.destroy()
-    can.place(x=-2,y=-2)
     can.create_image(0,0,image=linear_gradient_1)
-    can.create_text(150,50,fill="white",text="prérequis:",font=Font_titre)
-    can.create_text(300,150,fill="white",text="-ouvrez le portail de développeur discord:\n\n\n\n-connectez-vous",font=Font_desc)
-    button_link.place(x=150,y=140)
-    can.create_image(250,350, image=DDPconnexion_resized)
+    can.create_image(10,10,image=img_bck_white)
+    can.create_text(150,50,fill="#7256B2",text="prérequis",font=Font_titre_gros)
+    can.create_text(300,165,fill="white",text="-ouvrez le portail de développeur discord:\n\n\n-connectez-vous",font=Font_desc)
+    button_link= Button(frame_p,image = button_open_link,width= 150,height=25,relief=FLAT,bg="#6f60c0",fg="white",activeforeground="white",borderwidth=0,activebackground="white",highlightbackground="white",text = 'cliquez ici',compound="center",font=Font_button,command=open_link)
+    button_link.place(x=150,y=150)
+    button_next = Button(frame_p,image = button_next_img_resized,width= 150,height=25,relief=FLAT,bg="#7159b5",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#7159b5",highlightbackground="#7159b5",text = 'suivant',compound="center",font=Font_button,command=interface_suivante)
     button_next.place(x=575,y=450)
-    button_retour_home.place(x=10,y=20)
+    can.create_image(250,340, image=DDPconnexion_resized)
+    button_retour_home = Button(frame_p,image = button_open_link,width= 120,height=25,relief=FLAT,bg="#6f60c0",fg="white",activeforeground="white",borderwidth=0,activebackground="white",highlightbackground="white",text = 'Menu',compound="center",font=Font_button,command=menu_home)
+    button_retour_home.place(x=25,y=450)
 
 def tuto_2():
-    for widgets in frame.winfo_children():
+    can.delete(ALL)
+    for widgets in frame_p.winfo_children():
         if widgets.winfo_class() != 'Canvas':
             widgets.destroy()
+    can.create_image(0,0,image=linear_gradient_1)
+    can.create_image(10,10,image=img_bck_white)
+    can.create_text(150,50,fill="#7256B2",text="prérequis",font=Font_titre_gros)
+    can.create_text(300,165,fill="white",text="créez une nouvelle application",font=Font_desc)
+    button_retour_home = Button(frame_p,image = button_open_link,width= 120,height=25,relief=FLAT,bg="#6f60c0",fg="white",activeforeground="white",borderwidth=0,activebackground="white",highlightbackground="white",text = 'Menu',compound="center",font=Font_button,command=menu_home)
+    button_retour_home.place(x=25,y=450)
+
 
 #premier menu en cliquant sur "nouveau" 
 def nouveau_1():
     can.delete(ALL)
-    for widgets in frame.winfo_children():
+    for widgets in frame_p.winfo_children():
         widgets.destroy()
 
 #ouvre des liens différents en fonciton de la fenêtre dans laquelle le bouton est cliqué
@@ -75,8 +91,9 @@ Font_button = font.Font(family="Abadi MT",size=14,weight="bold")
 Font_PyBot = font.Font(family="Gadugi",size=22,weight="bold")
 Font_desc = font.Font(family="Arial Baltic",size=14)
 Font_titre = font.Font(family="Gadugi",size=16,weight="bold")
+Font_titre_gros = font.Font(family="Gadugi",size=25,weight="bold")
 
-#importations et modifications d'images
+#importations et modifications d'images(si nécessaire)
 linear_gradent_home = PhotoImage(file="PyBot-NSI-1ere\images\linear-gradient-home.png")
 button_home_img = PhotoImage(file="PyBot-NSI-1ere\images\-button-home.png")
 button_home_img_resized = button_home_img.subsample(2)
@@ -86,13 +103,10 @@ DDPconnexion_resized = DDPconnexion.subsample(2)
 linear_gradient_1 = PhotoImage(file="PyBot-NSI-1ere\images\linear-gradient-1.png")
 button_next_img = PhotoImage(file="PyBot-NSI-1ere\images\-button-next.png")
 button_next_img_resized = button_next_img.subsample(3)
+img_bck_white = PhotoImage(file="PyBot-NSI-1ere\images\prerequis.png")
+new_app = PhotoImage(file="PyBot-NSI-1ere\images\-app-nvx.png")
+new_bot = PhotoImage(file="PyBot-NSI-1ere\images\-bot-nvx.png")  
 
-#création des boutons
-button_retour_home = Button(frame,image = button_open_link,width= 120,height=25,relief=FLAT,bg="#6f60c0",fg="white",activeforeground="white",borderwidth=0,activebackground="white",highlightbackground="white",text = 'Menu',compound="center",font=Font_button,command=menu_home)
-button_home_act_t = Button(frame,image = button_home_img_resized,width= 180,height=40,relief=FLAT,bg="white",fg="white",activeforeground="white",borderwidth=0,activebackground="white",highlightbackground="white",text = 'tutoriel',compound="center",font=Font_button,command=tuto_1)
-button_home_act_n = Button(frame,image = button_home_img_resized,width= 180,height=40,relief=FLAT,bg="white",fg="white",activeforeground="white",borderwidth=0,activebackground="white",highlightbackground="white",text = 'nouveau',compound="center",font=Font_button,command=nouveau_1)
-button_link= Button(frame,image = button_open_link,width= 150,height=25,relief=FLAT,bg="#6f60c0",fg="white",activeforeground="white",borderwidth=0,activebackground="white",highlightbackground="white",text = 'cliquez ici',compound="center",font=Font_button,command=open_link)
-button_next = Button(frame,image = button_next_img_resized,width= 150,height=25,relief=FLAT,bg="#7159b5",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#7159b5",highlightbackground="#7159b5",text = 'suivant',compound="center",font=Font_button,command=interface_suivante)
 
 menu_home()
-fen.mainloop()
+frame_p.mainloop()

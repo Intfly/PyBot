@@ -107,12 +107,23 @@ def tuto_3():
     button_retour_home.place(x=25,y=450)
 
 def tuto_4():
-    print(1)
+    can.delete(ALL)
+    for widgets in frame_p.winfo_children():
+        if widgets.winfo_class() != 'Canvas':
+            widgets.destroy()
+    can.create_image(0,0,image=linear_gradient_1)
+    can.create_image(10,10,image=img_bck_white)
+    can.create_text(150,50,fill="#7256B2",text="installation",font=Font_titre_gros)
+    button_retour_home = Button(frame_p,image = button_open_link,width= 120,height=25,relief=FLAT,bg="#6f60c0",fg="white",activeforeground="white",borderwidth=0,activebackground="#6A72D9",highlightbackground="white",text = 'Menu',compound="center",font=Font_button,command=menu_home)
+    button_retour_home.place(x=575,y=450)   
 #premier menu en cliquant sur "nouveau" 
 def nouveau_1():
+    global next_helper
+    next_helper = 5
     can.delete(ALL)
     for widgets in frame_p.winfo_children():
         widgets.destroy()
+    
 
 #ouvre des liens différents en fonciton de la fenêtre dans laquelle le bouton est cliqué
 def open_link():

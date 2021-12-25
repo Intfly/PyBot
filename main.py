@@ -122,7 +122,10 @@ def nouveau_1():
     next_helper = 5
     can.delete(ALL)
     for widgets in frame_p.winfo_children():
-        widgets.destroy()
+        if widgets.winfo_class() != 'Canvas':
+            widgets.destroy()
+    ent_id = Entry(frame_p,image =entry)
+    
     
 
 #ouvre des liens différents en fonciton de la fenêtre dans laquelle le bouton est cliqué
@@ -150,7 +153,8 @@ button_next_img = PhotoImage(file="PyBot-NSI-1ere\images\-button-next.png")
 button_next_img_resized = button_next_img.subsample(3)
 img_bck_white = PhotoImage(file="PyBot-NSI-1ere\images\prerequis.png")
 new_app = PhotoImage(file="PyBot-NSI-1ere\images\-app-nvx.png")
-new_bot = PhotoImage(file="PyBot-NSI-1ere\images\-bot-nvx.png")  
+new_bot = PhotoImage(file="PyBot-NSI-1ere\images\-bot-nvx.png")
+entry = PhotoImage(file="PyBot-NSI-1ere\images\-button-home.png")  
 
 
 menu_home()

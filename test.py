@@ -3,27 +3,19 @@ from tkinter import *
 
 #Create an instance of tkinter frame
 win= Tk()
-
+def oui():
+   global x
+   x=ent.get()
+   print(x)
 #Set the geometry of frame
 win.geometry("600x250")
+def ftn():
+   global ent
+   ent = Entry(win,bg="#000",fg ='white',relief=FLAT,width=200)
+   ent.place(x=100,y=100)
+   b=Button(win,command=oui)
+   b.place(x=200,y=200)
 
-#Create a frame
-frame = Frame(win)
-frame.pack(side="top", expand=True, fill="both")
 
-can = Canvas(frame,bg="white",width=600,height=250)
-can.place(x=0,y=0)
-#Create a text label
-xi=Label(frame,text="Enter the Password", font=('Helvetica',20))
-xi.place(x=100,y=100)
-
-def clear_frame():
-   for widgets in frame.winfo_children():
-      if widgets.winfo_class() != 'Canvas':
-         widgets.destroy()
-   Butt.place(x=10,y=100)
-
-#Create a button to close the window
-Butt = Button(frame, text="Clear", font=('Helvetica bold', 10), command=clear_frame)
-Butt.place(x=10,y=20)
+ftn()
 win.mainloop()

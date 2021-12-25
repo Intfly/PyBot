@@ -124,7 +124,12 @@ def nouveau_1():
     for widgets in frame_p.winfo_children():
         if widgets.winfo_class() != 'Canvas':
             widgets.destroy()
-    ent_id = Entry(frame_p,image =entry)
+    can.create_image(0,0, image= linear_gradient_2)
+    can.create_image(378,235,image=ent)
+    ent_id = Entry(frame_p,relief=FLAT,bg="grey")
+    ent_id.place(x=200,y=200,width=300,height=50)
+    button_retour_home = Button(frame_p,image = button_open_link,width= 120,height=25,relief=FLAT,bg="#af75c7",fg="white",activeforeground="white",borderwidth=0,activebackground="#af75c7",highlightbackground="white",text = 'Menu',compound="center",font=Font_button,command=menu_home)
+    button_retour_home.place(x=25,y=450) 
     
     
 
@@ -154,8 +159,9 @@ button_next_img_resized = button_next_img.subsample(3)
 img_bck_white = PhotoImage(file="PyBot-NSI-1ere\images\prerequis.png")
 new_app = PhotoImage(file="PyBot-NSI-1ere\images\-app-nvx.png")
 new_bot = PhotoImage(file="PyBot-NSI-1ere\images\-bot-nvx.png")
-entry = PhotoImage(file="PyBot-NSI-1ere\images\-button-home.png")  
-
+linear_gradient_2 = PhotoImage(file="PyBot-NSI-1ere\images\linear-gradient-2.png")
+ent = PhotoImage(file="PyBot-NSI-1ere\images\ent.png")   
+ent =ent.subsample(2)
 
 menu_home()
 frame_p.mainloop()

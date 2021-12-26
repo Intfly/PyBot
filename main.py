@@ -52,6 +52,9 @@ def interface_suivante():
         nouveau_2()
         return vect
 
+def ftn_commande():
+    if cmd == 1:
+        print(1)
 #premier menu en cliquant sur "tutoriel" 
 def tuto_1():
     global olhelper
@@ -149,6 +152,7 @@ def nouveau_1():
     button_next.place(x=600,y=450) 
 
 def nouveau_2():
+    global cmd
     global next_helper
     next_helper = 6
     can.delete(ALL)
@@ -156,9 +160,20 @@ def nouveau_2():
         if widgets.winfo_class() != 'Canvas':
             widgets.destroy()
     can.create_image(0,0, image= linear_gradient_2)
+    commande= Button(frame_p,image =commande_img,width= 155,height=45,relief=FLAT,bg="#a569c2",borderwidth=0,activebackground="#a569c2",highlightbackground="#7159b5",compound="center",command=ftn_commande)
+    commande.place(x=180,y=365)
+
+def nouveau_3():
+    global next_helper
+    next_helper = 7
+    can.delete(ALL)
+    for widgets in frame_p.winfo_children():
+        if widgets.winfo_class() != 'Canvas':
+            widgets.destroy()
+    can.create_image(0,0, image= linear_gradient_2)
     button_retour_home = Button(frame_p,image = button_open_link,width= 120,height=25,relief=FLAT,bg="#af75c7",fg="white",activeforeground="white",borderwidth=0,activebackground="#af75c7",highlightbackground="white",text = 'Menu',compound="center",font=Font_button,command=menu_home)
     button_retour_home.place(x=25,y=450)
-    can.create_text(265,140,fill="grey",text="ID du Bot",font=Font_desc)
+    can.create_text(265,140,fill="grey",text="nom de la commande",font=Font_desc)
     ent_id = Entry(frame_p,relief=SUNKEN,bg="white",font =Font_button,fg="#686868")
     ent_id.place(x=225,y=150,width=300,height=50)    
     
@@ -175,6 +190,7 @@ Font_PyBot = font.Font(family="Gadugi",size=22,weight="bold")
 Font_desc = font.Font(family="Arial Baltic",size=14)
 Font_titre = font.Font(family="Gadugi",size=16,weight="bold")
 Font_titre_gros = font.Font(family="Gadugi",size=25,weight="bold")
+Font_commande = font.Font(family="Arial Baltic",size=16)
 
 #importations et modifications d'images(si nécessaire)
 linear_gradent_home = PhotoImage(file="PyBot-NSI-1ere\images\linear-gradient-home.png")
@@ -191,7 +207,9 @@ new_app = PhotoImage(file="PyBot-NSI-1ere\images\-app-nvx.png")
 new_bot = PhotoImage(file="PyBot-NSI-1ere\images\-bot-nvx.png")
 linear_gradient_2 = PhotoImage(file="PyBot-NSI-1ere\images\linear-gradient-2.png")
 ent = PhotoImage(file="PyBot-NSI-1ere\images\ent.png")   
-ent =ent.subsample(2)
+ent = ent.subsample(2)
+commande_img = PhotoImage(file="PyBot-NSI-1ere\images\commande.png")
+commande_img = commande_img.subsample(2)
 
 menu_home()
 frame_p.mainloop()

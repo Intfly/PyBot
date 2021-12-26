@@ -1,20 +1,29 @@
-#Import the required libraries
+# Python program to determine which
+# button was pressed in tkinter
+  
+# Import the library tkinter
 from tkinter import *
-
-#Create an instance of tkinter frame
-win= Tk()
-def oui():
-   x=ent.get()
-   print(x)
-#Set the geometry of frame
-win.geometry("600x250")
-def ftn():
-   global ent
-   ent = Entry(win,bg="#000",fg ='white',relief=FLAT,width=200)
-   ent.place(x=100,y=100)
-   b=Button(win,command=oui)
-   b.place(x=200,y=200)
-
-
-ftn()
-win.mainloop()
+  
+# Create a GUI app
+app = Tk()
+  
+# Create a function with one paramter, i.e., of 
+# the text you want to show when button is clicked
+def which_button(button_press):
+    # Printing the text when a button is clicked
+    print(button_press)
+  
+  
+# Creating and displaying of button b1
+b1 = Button(app, text="Apple",
+            command=lambda m="It is an apple": which_button(m))
+  
+b1.grid(padx=10, pady=10)
+  
+# Creating and displaying of button b2
+b2 = Button(app, text="Banana",
+            command=lambda m="It is a banana": which_button(m))
+b2.grid(padx=10, pady=10)
+  
+# Make the infinite loop for displaying the app
+app.mainloop()

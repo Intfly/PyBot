@@ -163,10 +163,35 @@ def nouveau_2():
         if widgets.winfo_class() != 'Canvas':
             widgets.destroy()
     can.create_image(0,0, image= linear_gradient_2)
-    commande = Button(frame_p,image =commande_img,width= 155,height=45,relief=FLAT,bg="#a569c2",fg="#a569c2",activeforeground="#a569c2",borderwidth=0,activebackground="#a569c2",highlightbackground="white",text = 'Menu',compound="center",font=Font_button,command=lambda m=1:ftn_commande(m))
-    commande.place(x=180,y=365)
-    commande['text'] = "oui"
-    commande.place(x=280,y=365)
+    for i in range(9):# créé automatiquement 9 boutons avec des textes différents(rend le code plus lent mais plus propre)
+        commande = Button(frame_p,image =commande_img,width= 155,height=45,relief=FLAT,bg="#a569c2",fg="#a569c2",activeforeground="#a569c2",borderwidth=0,activebackground="#a569c2",highlightbackground="white",text = 'Menu',compound="center",font=Font_button,command=lambda m=1+i:ftn_commande(m))
+        if i<=2:
+            commande.place(x=125+(180*i),y=75)
+        elif i>=3 and i<=5:
+            commande.place(x=125+(180*(i-3)),y=200)
+        elif i>5 and i<=7:
+            commande.place(x=125+(180*(i-6)),y=325)
+        elif i == 8:
+            commande.place(x=575,y=435)      
+        if i == 1:
+            commande['text']= "move"
+        elif i == 2:
+            commande['text']= "kick"
+        elif i == 3:
+            commande['text']= "ban"
+        elif i == 3:
+            commande['text']= "déconnecte quelqu'un"
+        elif i == 4:
+            commande['text']= "rich presence"
+        elif i == 5:
+            commande['text']= "message"
+        elif i == 6:
+            commande['text']= "rejoins serv"
+        elif i == 7:
+            commande['text']= "calcul"
+        elif i == 8:
+            commande['text']= "préfixe"
+    
     button_retour_home = Button(frame_p,image = button_open_link,width= 120,height=25,relief=FLAT,bg="#af75c7",fg="white",activeforeground="white",borderwidth=0,activebackground="#af75c7",highlightbackground="white",text = 'Menu',compound="center",font=Font_button,command=menu_home)
     button_retour_home.place(x=25,y=450)
 
@@ -199,7 +224,7 @@ Font_titre = font.Font(family="Gadugi",size=16,weight="bold")
 Font_titre_gros = font.Font(family="Gadugi",size=25,weight="bold")
 Font_commande = font.Font(family="Arial Baltic",size=16)
 
-#importations et modifications d'images(si nécessaire)
+#importations et modifications (si nécessaire) d'images
 linear_gradent_home = PhotoImage(file="PyBot-NSI-1ere\images\linear-gradient-home.png")
 button_home_img = PhotoImage(file="PyBot-NSI-1ere\images\-button-home.png")
 button_home_img_resized = button_home_img.subsample(2)

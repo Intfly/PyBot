@@ -126,11 +126,27 @@ def nouveau_1():
             widgets.destroy()
     can.create_image(0,0, image= linear_gradient_2)
     can.create_image(378,235,image=ent)
-    ent_id = Entry(frame_p,relief=FLAT,bg="white",font =Font_titre,fg="grey")
-    ent_id.place(x=225,y=125,width=300,height=50)
+    can.create_text(265,140,fill="grey",text="ID du Bot",font=Font_desc)
+    ent_id = Entry(frame_p,relief=SUNKEN,bg="white",font =Font_button,fg="#686868")
+    ent_id.place(x=225,y=150,width=300,height=50)
+    can.create_text(290,260,fill="grey",text="TOKEN du Bot",font=Font_desc)
+    ent_id = Entry(frame_p,relief=SUNKEN,bg="white",font =Font_titre,fg="#686868")
+    ent_id.place(x=225,y=270,width=300,height=50)
+    button_next = Button(frame_p,image = button_open_link,width= 125,height=25,relief=FLAT,bg="white",fg="white",activeforeground="white",borderwidth=0,activebackground="white",highlightbackground="#7159b5",text = 'perdus?',compound="center",font=Font_button,command=tuto_1)
+    button_next.place(x=180,y=365)
     button_retour_home = Button(frame_p,image = button_open_link,width= 120,height=25,relief=FLAT,bg="#af75c7",fg="white",activeforeground="white",borderwidth=0,activebackground="#af75c7",highlightbackground="white",text = 'Menu',compound="center",font=Font_button,command=menu_home)
     button_retour_home.place(x=25,y=450) 
-    
+    button_next = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#9250b9",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#9250b9",highlightbackground="#7159b5",text = 'suivant',compound="center",font=Font_button,command=interface_suivante)
+    button_next.place(x=600,y=450) 
+
+def nouveau_2():
+    global next_helper
+    next_helper = 6
+    can.delete(ALL)
+    for widgets in frame_p.winfo_children():
+        if widgets.winfo_class() != 'Canvas':
+            widgets.destroy()
+    can.create_image(0,0, image= linear_gradient_2) 
     
 
 #ouvre des liens différents en fonciton de la fenêtre dans laquelle le bouton est cliqué

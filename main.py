@@ -18,7 +18,7 @@ olhelper = 0
 next_helper = 0
 home_hlp = 0
 apos='"'
-
+vect_s2=[]
 
 def menu_home():
     global home_hlp
@@ -39,6 +39,7 @@ def menu_home():
 #fonction du bouton suivant
 def interface_suivante():
     global vect
+    global x 
     if next_helper == 1:
         tuto_2()
     elif next_helper == 2:
@@ -51,7 +52,6 @@ def interface_suivante():
         if  tok != "" and ide != "":
             vect=[tok,ide]
             nouveau_2()
-            return vect
         else:
             can.create_text(375,465,fill="red",text="le TOKEN/ID ne peut pas être nul",font=Font_desc)
     elif next_helper == 7:
@@ -64,8 +64,10 @@ def interface_suivante():
 
 def ftn_commande(cmd):
     global vect_s
-    vect_s=[]
-    vect.append(cmd)
+    vect_s={}
+    vect_s[x]=cmd#ainsi, le dico ne peut contenir que une seule valeur/un sel nom vu qu'il est reset à chaque clique sur un bouton
+    return vect_s
+
 #premier menu en cliquant sur "tutoriel" 
 def tuto_1():
     global olhelper
@@ -191,7 +193,7 @@ def nouveau_3():
             widgets.destroy()
     can.create_image(0,0, image= linear_gradient_2)
     for i in range(9):# créé automatiquement 9 boutons avec des textes différents(rend le code plus lent mais plus propre)
-        commande = Button(frame_p,image =commande_img,width= 155,height=45,relief=FLAT,bg="#a569c2",fg="#a569c2",activeforeground="#a569c2",borderwidth=0,activebackground="#a569c2",highlightbackground="white",text = 'Menu',compound="center",font=Font_button,command=lambda m=i:ftn_commande(m))
+        commande = Button(frame_p,image =commande_img,width= 155,height=50,relief=FLAT,bg="#a569c2",fg="#a569c2",activeforeground="#a569c2",borderwidth=0,activebackground="#a569c2",highlightbackground="white",text = 'Menu',compound="center",font=Font_button,command=lambda m=i:ftn_commande(m))
         if i<=2:
             commande.place(x=125+(180*i),y=75)
         elif i>=3 and i<=5:
@@ -219,21 +221,38 @@ def nouveau_3():
         elif i == 8:
             commande['text'] = "préfixe"
             commande['image'] = button_next_img_resized
-            commande['command'] = cmd_pref
+            commande['command'] = interm
     
     button_retour_home = Button(frame_p,image = button_open_link,width= 120,height=25,relief=FLAT,bg="#af75c7",fg="white",activeforeground="white",borderwidth=0,activebackground="#af75c7",highlightbackground="white",text = 'Menu',compound="center",font=Font_button,command=menu_home)
     button_retour_home.place(x=25,y=450)
- 
-def cmd_pref():
+
+
+def interm():
     global next_helper
     next_helper = 7
     can.delete(ALL)
     for widgets in frame_p.winfo_children():
         if widgets.winfo_class() != 'Canvas':
             widgets.destroy()
-    can.create_image(0,0, image= linear_gradient_2)      
+    can.create_image(0,0, image= linear_gradient_2)
+    vect_s2.append(vect_s)
+    print(vect_s2)
+    nvx = Button(frame_p,image =commande_img_2,width= 300, height=100,relief=FLAT,bg="#a569c2",fg="#a569c2",activeforeground="#a569c2",borderwidth=0,activebackground="#a569c2",highlightbackground="white",text = 'nouvelle commande',compound="center",font=Font_PyBot,command=nouveau_2)
+    nvx.place(x=223,y=100)
+    pref = Button(frame_p,image =commande_img_2,width= 300,height=100,relief=FLAT,bg="#a569c2",fg="#a569c2",activeforeground="#a569c2",borderwidth=0,activebackground="#a569c2",highlightbackground="white",text = 'suivant',compound="center",font=Font_PyBot,command=cmd_pref)
+    pref.place(x=223,y=250)
 
-#ouvre des liens différents en fonciton de la fenêtre dans laquelle le bouton est cliqué
+def cmd_pref():
+    global next_helper
+    next_helper = 8
+    can.delete(ALL)
+    for widgets in frame_p.winfo_children():
+        if widgets.winfo_class() != 'Canvas':
+            widgets.destroy()
+    can.create_image(0,0, image= linear_gradient_2)
+    print(vect_s)      
+
+#ouvre des liens différents en fonction de la fenêtre dans laquelle le bouton est cliqué
 def open_link():
     global olhelper
     if olhelper == 1:
@@ -265,6 +284,7 @@ ent = PhotoImage(file="PyBot-NSI-1ere\images\ent.png")
 ent = ent.subsample(2)
 commande_img = PhotoImage(file="PyBot-NSI-1ere\images\commande.png")
 commande_img = commande_img.subsample(2)
+commande_img_2 = PhotoImage(file="PyBot-NSI-1ere\images\commande.png")
 ent2 = PhotoImage(file="PyBot-NSI-1ere\images\ent-2.png")   
 ent2 = ent2.subsample(2)
 

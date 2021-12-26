@@ -126,8 +126,8 @@ def nouveau_1():
             widgets.destroy()
     can.create_image(0,0, image= linear_gradient_2)
     can.create_image(378,235,image=ent)
-    ent_id = Entry(frame_p,relief=FLAT,bg="grey")
-    ent_id.place(x=200,y=200,width=300,height=50)
+    ent_id = Entry(frame_p,relief=FLAT,bg="white",font =Font_titre,fg="grey")
+    ent_id.place(x=225,y=125,width=300,height=50)
     button_retour_home = Button(frame_p,image = button_open_link,width= 120,height=25,relief=FLAT,bg="#af75c7",fg="white",activeforeground="white",borderwidth=0,activebackground="#af75c7",highlightbackground="white",text = 'Menu',compound="center",font=Font_button,command=menu_home)
     button_retour_home.place(x=25,y=450) 
     

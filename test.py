@@ -4,7 +4,6 @@ from tkinter import *
 #Create an instance of tkinter frame
 win= Tk()
 def oui():
-   global x
    x=ent.get()
    print(x)
 #Set the geometry of frame

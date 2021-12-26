@@ -45,18 +45,27 @@ def interface_suivante():
         tuto_3()
     elif next_helper == 3:
         tuto_4()
-    elif next_helper == 5:
+    elif next_helper == 6:
         tok=ent_tok.get()
         ide=ent_id.get()
-        vect=[tok,ide]
-        nouveau_2()
-        return vect
+        if  tok != "" and ide != "":
+            vect=[tok,ide]
+            nouveau_2()
+            return vect
+        else:
+            can.create_text(375,465,fill="red",text="le TOKEN/ID ne peut pas être nul",font=Font_desc)
+    elif next_helper == 7:
+        x=ent_nm.get()
+        if x != "":
+            nouveau_3()
+        else:
+            can.create_text(375,465,fill="red",text="le nom ne peut pas être vide",font=Font_desc)
+
 
 def ftn_commande(cmd):
-    if cmd == 1:
-        print(5)
-    elif cmd ==2:
-        print(2)
+    global vect_s
+    vect_s=[]
+    vect.append(cmd)
 #premier menu en cliquant sur "tutoriel" 
 def tuto_1():
     global olhelper
@@ -133,7 +142,7 @@ def nouveau_1():
     global ent_tok
     global ent_id
     global next_helper
-    next_helper = 5
+    next_helper = 6
     can.delete(ALL)
     for widgets in frame_p.winfo_children():
         if widgets.winfo_class() != 'Canvas':
@@ -154,17 +163,35 @@ def nouveau_1():
     button_next.place(x=600,y=450) 
 
 def nouveau_2():
+    global next_helper
+    global ent_nm
+    next_helper = 7
+    can.delete(ALL)
+    for widgets in frame_p.winfo_children():
+        if widgets.winfo_class() != 'Canvas':
+            widgets.destroy()
+    can.create_image(0,0, image = linear_gradient_2)
+    button_retour_home = Button(frame_p,image = button_open_link,width= 120,height=25,relief=FLAT,bg="#af75c7",fg="white",activeforeground="white",borderwidth=0,activebackground="#af75c7",highlightbackground="white",text = 'Menu',compound="center",font=Font_button,command=menu_home)
+    button_retour_home.place(x=25,y=450)
+    can.create_image(375,215,image = ent2)
+    can.create_text(295,170,fill="grey",text="nom de la commande",font=Font_desc)
+    ent_nm = Entry(frame_p,relief=SUNKEN,bg="white",font =Font_button,fg="#686868")
+    ent_nm.place(x=200,y=185,width=350,height=50)
+    button_next = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#9250b9",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#9250b9",highlightbackground="#7159b5",text = 'suivant',compound="center",font=Font_button,command=interface_suivante)
+    button_next.place(x=600,y=450)   
+
+def nouveau_3():
     global cmd
     global next_helper
-    cmd=15
-    next_helper = 6
+    cmd=0
+    next_helper = 8
     can.delete(ALL)
     for widgets in frame_p.winfo_children():
         if widgets.winfo_class() != 'Canvas':
             widgets.destroy()
     can.create_image(0,0, image= linear_gradient_2)
     for i in range(9):# créé automatiquement 9 boutons avec des textes différents(rend le code plus lent mais plus propre)
-        commande = Button(frame_p,image =commande_img,width= 155,height=45,relief=FLAT,bg="#a569c2",fg="#a569c2",activeforeground="#a569c2",borderwidth=0,activebackground="#a569c2",highlightbackground="white",text = 'Menu',compound="center",font=Font_button,command=lambda m=1+i:ftn_commande(m))
+        commande = Button(frame_p,image =commande_img,width= 155,height=45,relief=FLAT,bg="#a569c2",fg="#a569c2",activeforeground="#a569c2",borderwidth=0,activebackground="#a569c2",highlightbackground="white",text = 'Menu',compound="center",font=Font_button,command=lambda m=i:ftn_commande(m))
         if i<=2:
             commande.place(x=125+(180*i),y=75)
         elif i>=3 and i<=5:
@@ -172,43 +199,39 @@ def nouveau_2():
         elif i>5 and i<=7:
             commande.place(x=125+(180*(i-6)),y=325)
         elif i == 8:
-            commande.place(x=575,y=435)      
+            commande.place(x=600,y=450,width = 120,height=25)      
         if i == 1:
-            commande['text']= "move"
+            commande['text'] = "move"
         elif i == 2:
-            commande['text']= "kick"
+            commande['text'] = "kick"
         elif i == 3:
-            commande['text']= "ban"
+            commande['text'] = "ban"
         elif i == 3:
-            commande['text']= "déconnecte quelqu'un"
+            commande['text'] = "déconnecte quelqu'un"
         elif i == 4:
-            commande['text']= "rich presence"
+            commande['text'] = "rich presence"
         elif i == 5:
-            commande['text']= "message"
+            commande['text'] = "message"
         elif i == 6:
-            commande['text']= "rejoins serv"
+            commande['text'] = "rejoins serv"
         elif i == 7:
-            commande['text']= "calcul"
+            commande['text'] = "calcul"
         elif i == 8:
-            commande['text']= "préfixe"
+            commande['text'] = "préfixe"
+            commande['image'] = button_next_img_resized
+            commande['command'] = cmd_pref
     
     button_retour_home = Button(frame_p,image = button_open_link,width= 120,height=25,relief=FLAT,bg="#af75c7",fg="white",activeforeground="white",borderwidth=0,activebackground="#af75c7",highlightbackground="white",text = 'Menu',compound="center",font=Font_button,command=menu_home)
     button_retour_home.place(x=25,y=450)
-
-def cmd_name():
+ 
+def cmd_pref():
     global next_helper
     next_helper = 7
     can.delete(ALL)
     for widgets in frame_p.winfo_children():
         if widgets.winfo_class() != 'Canvas':
             widgets.destroy()
-    can.create_image(0,0, image= linear_gradient_2)
-    button_retour_home = Button(frame_p,image = button_open_link,width= 120,height=25,relief=FLAT,bg="#af75c7",fg="white",activeforeground="white",borderwidth=0,activebackground="#af75c7",highlightbackground="white",text = 'Menu',compound="center",font=Font_button,command=menu_home)
-    button_retour_home.place(x=25,y=450)
-    can.create_text(265,140,fill="grey",text="nom de la commande",font=Font_desc)
-    ent_id = Entry(frame_p,relief=SUNKEN,bg="white",font =Font_button,fg="#686868")
-    ent_id.place(x=225,y=150,width=300,height=50)    
-    
+    can.create_image(0,0, image= linear_gradient_2)      
 
 #ouvre des liens différents en fonciton de la fenêtre dans laquelle le bouton est cliqué
 def open_link():
@@ -242,6 +265,8 @@ ent = PhotoImage(file="PyBot-NSI-1ere\images\ent.png")
 ent = ent.subsample(2)
 commande_img = PhotoImage(file="PyBot-NSI-1ere\images\commande.png")
 commande_img = commande_img.subsample(2)
+ent2 = PhotoImage(file="PyBot-NSI-1ere\images\ent-2.png")   
+ent2 = ent2.subsample(2)
 
 menu_home()
 frame_p.mainloop()

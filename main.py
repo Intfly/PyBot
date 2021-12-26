@@ -52,9 +52,11 @@ def interface_suivante():
         nouveau_2()
         return vect
 
-def ftn_commande():
+def ftn_commande(cmd):
     if cmd == 1:
-        print(1)
+        print(5)
+    elif cmd ==2:
+        print(2)
 #premier menu en cliquant sur "tutoriel" 
 def tuto_1():
     global olhelper
@@ -154,16 +156,21 @@ def nouveau_1():
 def nouveau_2():
     global cmd
     global next_helper
+    cmd=15
     next_helper = 6
     can.delete(ALL)
     for widgets in frame_p.winfo_children():
         if widgets.winfo_class() != 'Canvas':
             widgets.destroy()
     can.create_image(0,0, image= linear_gradient_2)
-    commande= Button(frame_p,image =commande_img,width= 155,height=45,relief=FLAT,bg="#a569c2",borderwidth=0,activebackground="#a569c2",highlightbackground="#7159b5",compound="center",command=ftn_commande)
+    commande = Button(frame_p,image =commande_img,width= 155,height=45,relief=FLAT,bg="#a569c2",fg="#a569c2",activeforeground="#a569c2",borderwidth=0,activebackground="#a569c2",highlightbackground="white",text = 'Menu',compound="center",font=Font_button,command=lambda m=1:ftn_commande(m))
     commande.place(x=180,y=365)
+    commande['text'] = "oui"
+    commande.place(x=280,y=365)
+    button_retour_home = Button(frame_p,image = button_open_link,width= 120,height=25,relief=FLAT,bg="#af75c7",fg="white",activeforeground="white",borderwidth=0,activebackground="#af75c7",highlightbackground="white",text = 'Menu',compound="center",font=Font_button,command=menu_home)
+    button_retour_home.place(x=25,y=450)
 
-def nouveau_3():
+def cmd_name():
     global next_helper
     next_helper = 7
     can.delete(ALL)

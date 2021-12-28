@@ -66,9 +66,46 @@ def ftn_commande(cmd):
     global vect_s
     global c1_v
     global c2_v
-    global act_nm     
+    global act_nm  
+    global ent_fx   
     vect_s={}
     vect_s[x]=cmd#ainsi, le dico ne peut contenir que une seule valeur/un sel nom vu qu'il est reset à chaque clique sur un bouton
+    if cmd == 0:
+        can.delete(ALL)
+        for widgets in frame_p.winfo_children():
+            if widgets.winfo_class() != 'Canvas':
+                widgets.destroy()   
+        can.create_image(0,0, image = linear_gradient_2)
+        button_retour_home = Button(frame_p,image = button_open_link,width= 120,height=25,relief=FLAT,bg="#af75c7",fg="white",activeforeground="white",borderwidth=0,activebackground="#af75c7",highlightbackground="white",text = 'Menu',compound="center",font=Font_button,command=menu_home)
+        button_retour_home.place(x=25,y=450)
+        can.create_image(375,215,image = ent2)
+        can.create_text(295,170,fill="grey",text="nombre de fois",font=Font_desc)
+        ent_fx = Entry(frame_p,relief=SUNKEN,bg="white",font =Font_button,fg="#686868")
+        ent_fx.place(x=200,y=185,width=350,height=50)
+        button_next = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#9250b9",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#9250b9",highlightbackground="#7159b5",text = 'suivant',compound="center",font=Font_button,command=recupfois_move)
+        button_next.place(x=600,y=450)
+    if cmd == 1:
+            can.delete(ALL)
+            for widgets in frame_p.winfo_children():
+                if widgets.winfo_class() != 'Canvas':
+                    widgets.destroy()
+            can.create_image(0,0, image= linear_gradient_2)
+            can.create_image(378,235,image=ent)
+            can.create_text(265,140,fill="grey",text="Channel 1",font=Font_desc)
+            cha1 = Entry(frame_p,relief=SUNKEN,bg="white",font =Font_button,fg="#686868")
+            cha1.place(x=225,y=150,width=300,height=50)
+            can.create_text(290,260,fill="grey",text="channel 2",font=Font_desc)
+            cha2 = Entry(frame_p,relief=SUNKEN,bg="white",font =Font_titre,fg="#686868")
+            cha2.place(x=225,y=270,width=300,height=50)
+            can.create_text(290,260,fill="grey",text="channel 2",font=Font_desc)
+            nb_fois = Entry(frame_p,relief=SUNKEN,bg="white",font =Font_titre,fg="#686868")
+            nb_fois.place(x=225,y=270,width=300,height=50)
+            button_next = Button(frame_p,image = button_open_link,width= 125,height=25,relief=FLAT,bg="white",fg="white",activeforeground="white",borderwidth=0,activebackground="white",highlightbackground="#7159b5",text = 'perdus?',compound="center",font=Font_button,command=tuto_1)
+            button_next.place(x=180,y=365)
+            button_retour_home = Button(frame_p,image = button_open_link,width= 120,height=25,relief=FLAT,bg="#af75c7",fg="white",activeforeground="white",borderwidth=0,activebackground="#af75c7",highlightbackground="white",text = 'Menu',compound="center",font=Font_button,command=menu_home)
+            button_retour_home.place(x=25,y=450) 
+            button_next = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#9250b9",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#9250b9",highlightbackground="#7159b5",text = 'suivant',compound="center",font=Font_button,command=interface_suivante)
+            button_next.place(x=600,y=450) 
     if cmd == 4:
         can.delete(ALL)
         for widgets in frame_p.winfo_children():
@@ -91,7 +128,7 @@ def ftn_commande(cmd):
         act_lbl.place(x=200,y=240)
         act_nm = Entry(frame_p,relief=SUNKEN,bg="white",font =Font_button,fg="#686868")
         act_nm.place(x=200,y=280,width=350,height=50)
-        button_next = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#9250b9",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#9250b9",highlightbackground="#7159b5",text = 'suivant',compound="center",font=Font_button,command=interm)
+        button_next = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#9250b9",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#9250b9",highlightbackground="#7159b5",text = 'suivant',compound="center",font=Font_button,command=recup_act)
         button_next.place(x=600,y=450) 
         c1_v = IntVar()
         c2_v = IntVar()
@@ -100,6 +137,18 @@ def ftn_commande(cmd):
         c2 = Checkbutton(frame_p, text="écoute:",variable=c2_v, onvalue=1, offvalue=0,bg="white",activebackground="white",font=Font_desc,fg="#686868",activeforeground="#686868",command=change)
         c2.place(x=400,y=150)
         
+def recup_act():
+    global act
+    act=act_nm.get()
+    interm()
+
+def recupfois_ping():
+    global fois_ping
+    fois_ping=ent_fx.get()
+    interm()
+
+def recupfois_move():
+    global fois_move
 
 #premier menu en cliquant sur "tutoriel" 
 def tuto_1():
@@ -226,7 +275,7 @@ def nouveau_3():
             widgets.destroy()
     can.create_image(0,0, image= linear_gradient_2)
     for i in range(9):# créé automatiquement 9 boutons avec des textes différents(rend le code plus lent mais plus propre)
-        commande = Button(frame_p,image =commande_img,width= 155,height=50,relief=FLAT,bg="#a569c2",fg="#a569c2",activeforeground="#a569c2",borderwidth=0,activebackground="#a569c2",highlightbackground="white",text = 'Menu',compound="center",font=Font_button,command=lambda m=i:ftn_commande(m))
+        commande = Button(frame_p,image =commande_img,width= 155,height=50,relief=FLAT,bg="#a569c2",fg="#a569c2",activeforeground="#a569c2",borderwidth=0,activebackground="#a569c2",highlightbackground="white",text = 'ping',compound="center",font=Font_button,command=lambda m=i:ftn_commande(m))
         if i<=2:
             commande.place(x=125+(180*i),y=75)
         elif i>=3 and i<=5:
@@ -262,17 +311,13 @@ def nouveau_3():
 
 def interm():
     global next_helper
-    global act
     next_helper = 7
-    act=act_nm.get()
-    print(act)
     can.delete(ALL)
     for widgets in frame_p.winfo_children():
         if widgets.winfo_class() != 'Canvas':
             widgets.destroy()
     can.create_image(0,0, image= linear_gradient_2)
     vect_s2.append(vect_s)
-    print(vect_s2)
     nvx = Button(frame_p,image =commande_img_2,width= 300, height=100,relief=FLAT,bg="#a569c2",fg="#a569c2",activeforeground="#a569c2",borderwidth=0,activebackground="#a569c2",highlightbackground="white",text = 'nouvelle commande',compound="center",font=Font_PyBot,command=nouveau_2)
     nvx.place(x=223,y=100)
     pref = Button(frame_p,image =commande_img_2,width= 300,height=100,relief=FLAT,bg="#a569c2",fg="#a569c2",activeforeground="#a569c2",borderwidth=0,activebackground="#a569c2",highlightbackground="white",text = 'suivant',compound="center",font=Font_PyBot,command=cmd_pref)
@@ -304,14 +349,29 @@ def generation():
             widgets.destroy()
     can.create_image(0,0, image= linear_gradient_2)
     f= open("main_bot.py","w+")
-    f.write(f"import discord\nfrom discord.ext import commands \nimport asyncio\n\nintents= discord.Intents().all()\nbot = commands.Bot(command_prefix='{prefix}', intents=intents)\n@bot.event\nasync def on_ready():\n    print('bot pret')\n    ")
+    f.write(f"import discord\nfrom discord.ext import commands \nimport asyncio\n\nintents= discord.Intents().all()\nbot = commands.Bot(command_prefix='{prefix}', intents=intents)\n@bot.event\nasync def on_ready():\n    print('bot pret')\n")
     for i in vect_s2:
         for k,v in i.items():
             if v == 4:
                 if c1_v.get() == 1:
-                    f.write(f"await bot.change_presence(activity=discord.Game(name='{act}'))")
+                    f.write(f"  await bot.change_presence(activity=discord.Game(name='{act}'))")
                 if c2_v.get() == 1:
-                    f.write(f"await bot.change_presence(activity=discord.Activity(type = discord.ActivityType.listening, name = '{act}'))")
+                    f.write(f"  await bot.change_presence(activity=discord.Activity(type = discord.ActivityType.listening, name = '{act}'))")
+            if v==0:
+                f.write(f"\n@bot.command()\nasync def ps(ctx, member:discord.Member):\n   if ctx.message.author.guild_permissions.administrator==True:\n        for i in range({fois_move}):\n            await ctx.send(member.mention)\n            await asyncio.sleep(.5)\n\n")
+            if v == 1:
+                print(k)
+            if v == 2:
+                print(k)
+            if v == 3:
+                print(k)
+            if v == 5:
+                print(k)
+            if v == 6:
+                print(k)
+            if v == 7:
+                print(k)
+
 
 #ouvre des liens différents en fonction de la fenêtre dans laquelle le bouton est cliqué
 def open_link():

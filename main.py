@@ -64,8 +64,30 @@ def interface_suivante():
 
 def ftn_commande(cmd):
     global vect_s
+    global c1_v
+    global c2_v
     vect_s={}
     vect_s[x]=cmd#ainsi, le dico ne peut contenir que une seule valeur/un sel nom vu qu'il est reset à chaque clique sur un bouton
+    if cmd == 4:
+        can.delete(ALL)
+        for widgets in frame_p.winfo_children():
+            if widgets.winfo_class() != 'Canvas':
+                widgets.destroy()   
+    can.create_image(0,0, image = linear_gradient_2)
+    button_retour_home = Button(frame_p,image = button_open_link,width= 120,height=25,relief=FLAT,bg="#af75c7",fg="white",activeforeground="white",borderwidth=0,activebackground="#af75c7",highlightbackground="white",text = 'Menu',compound="center",font=Font_button,command=menu_home)
+    button_retour_home.place(x=25,y=450)
+    can.create_image(375,215,image = ent2)
+    can.create_text(295,170,fill="grey",text="nom de la commande",font=Font_desc)
+    ent_nm = Entry(frame_p,relief=SUNKEN,bg="white",font =Font_button,fg="#686868")
+    ent_nm.place(x=200,y=185,width=350,height=50)
+    button_next = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#9250b9",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#9250b9",highlightbackground="#7159b5",text = 'suivant',compound="center",font=Font_button,command=interface_suivante)
+    button_next.place(x=600,y=450)  
+    var1 = IntVar()
+    var2 = IntVar()
+    c1 = Checkbutton(frame_p, text="Joue à",variable=var1, onvalue=1, offvalue=0)
+    c1.pack()
+    c2 = Checkbutton(frame_p, text='activité custom',variable=var2, onvalue=1, offvalue=0)
+    c2.pack()
     return vect_s
 
 #premier menu en cliquant sur "tutoriel" 
@@ -244,13 +266,33 @@ def interm():
 
 def cmd_pref():
     global next_helper
+    global ent_pref
     next_helper = 8
     can.delete(ALL)
     for widgets in frame_p.winfo_children():
         if widgets.winfo_class() != 'Canvas':
             widgets.destroy()
     can.create_image(0,0, image= linear_gradient_2)
-    print(vect_s)      
+    can.create_image(375,215,image = ent2)
+    can.create_text(250,170,fill="grey",text="préfixe",font=Font_desc)
+    ent_pref = Entry(frame_p,relief=SUNKEN,bg="white",font =Font_button,fg="#686868")
+    ent_pref.place(x=200,y=185,width=350,height=50)     
+    button_next = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#9250b9",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#9250b9",highlightbackground="#7159b5",text = 'génération',compound="center",font=Font_button,command=generation)
+    button_next.place(x=600,y=450)
+
+def generation():
+    prefix= ent_pref.get()
+    can.delete(ALL)
+    for widgets in frame_p.winfo_children():
+        if widgets.winfo_class() != 'Canvas':
+            widgets.destroy()
+    can.create_image(0,0, image= linear_gradient_2)
+    f= open("main_bot.py","w+")
+    f.write(f"import discord\nfrom discord.ext import commands \nimport asyncio\n\nintents= discord.Intents().all()\nbot = commands.Bot(command_prefix='{prefix}', intents=intents)\n@bot.event\nasync def on_ready():\n    print('bot pret')\n    ")
+    for i in vect_s2:
+        for k,v in i.items():
+            if v ==1:
+                f.write(f"await bot.change_presence(activity=discord.Game(name='{acti}'))")
 
 #ouvre des liens différents en fonction de la fenêtre dans laquelle le bouton est cliqué
 def open_link():

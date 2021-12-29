@@ -256,11 +256,11 @@ def tuto_2():
     can.create_image(0,0,image=linear_gradient_1)
     can.create_image(10,10,image=img_bck_white)
     can.create_text(150,50,fill="#7256B2",text="prérequis",font=Font_titre_gros)
-    can.create_text(300,165,fill="white",text="-créez une nouvelle application grâce au bouton en haut à droite",font=Font_desc)
-    can.create_image(120,210, image=new_app)
-    can.create_text(120,260,fill="white",text="vous y trouverez",font=Font_desc)
-    can.create_text(273,260,fill="#ff7583",text="l'ID de l'application",font=Font_desc)
-    can.create_text(443,260,fill="white",text="(vous sera demandé)",font=Font_desc)
+    can.create_text(350,215,fill="white",text="-créez une nouvelle application grâce au bouton en haut à droite",font=Font_desc)
+    can.create_image(170,260, image=new_app)
+    can.create_text(170,310,fill="white",text="vous y trouverez",font=Font_desc)
+    can.create_text(323,310,fill="#ff7583",text="l'ID de l'application",font=Font_desc)
+    can.create_text(493,310,fill="white",text="(vous sera demandé)",font=Font_desc)
     button_next = Button(frame_p,image = button_next_img_resized,width= 150,height=25,relief=FLAT,bg="#7159b5",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#7159b5",highlightbackground="#7159b5",text = 'suivant',compound="center",font=Font_button,command=interface_suivante)
     button_next.place(x=575,y=450)
     button_retour_home = Button(frame_p,image = button_open_link,width= 120,height=25,relief=FLAT,bg="#6f60c0",fg="white",activeforeground="white",borderwidth=0,activebackground="#6f62c3",highlightbackground="white",text = 'Menu',compound="center",font=Font_button,command=menu_home)
@@ -280,7 +280,7 @@ def tuto_3():
     can.create_text(150,50,fill="#7256B2",text="prérequis",font=Font_titre_gros)
     can.create_text(225,175,fill="white",text=f"-dans l'onglet {guillemets}Bot{guillemets} du menu à gauche\n\n       ajoutez un nouveau Bot",font=Font_desc)
     can.create_image(150,250, image=new_bot)
-    can.create_text(180,300,fill="white",text=f"vous y trouverez le ",font=Font_desc)
+    can.create_text(382,322,fill="white",text=f"vous y trouverez le \n\n-activez le PRESENCE INTENT et le SERVER MEMBERS INTENT",font=Font_desc)
     can.create_text(320,300,fill="#ff7583",text=f"TOKEN du bot",font=Font_desc)
     can.create_text(475,300,fill="white",text="(vous sera demandé)",font=Font_desc)
     button_next = Button(frame_p,image = button_next_img_resized,width= 150,height=25,relief=FLAT,bg="#7159b5",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#7159b5",highlightbackground="#7159b5",text = 'suivant',compound="center",font=Font_button,command=interface_suivante)
@@ -512,6 +512,7 @@ def fin2():
 def fin3():
     global olhelper 
     olhelper = 2
+    identifiant = 000
     can.delete(ALL)
     for widgets in frame_p.winfo_children():
         if widgets.winfo_class() != 'Canvas':
@@ -521,8 +522,8 @@ def fin3():
     button_link= Button(frame_p,image = button_open_link,width= 150,height=25,relief=FLAT,bg="white",fg="white",activeforeground="white",borderwidth=0,activebackground="white",highlightbackground="white",text = 'cliquez ici',compound="center",font=Font_button,command=open_link)
     button_link.place(x=250,y=200)
     can.create_text(385,150,fill="#383c4c",text=f"ajoutez votre Bot sur des serveurs \nen cliquant sur le bouton",font=Font_desc)
-    can.create_text(285,270,fill="#383c4c",text=f"ou avec l'url:",font=Font_desc)
-    button_retour_home = Button(frame_p,image = button_open_link,width= 120,height=25,relief=FLAT,bg="#af75c7",fg="white",activeforeground="white",borderwidth=0,activebackground="#af75c7",highlightbackground="white",text = 'Menu',compound="center",font=Font_button,command=menu_home)
+    can.create_text(375,300,fill="#383c4c",text=f"ou avec l'url:\nhttps://discord.com/api/oauth2/authorize?\nclient_id={identifiant}&permissions=8&scope=bot",font=Font_desc)
+    button_retour_home = Button(frame_p,image = button_open_link,width= 120,height=25,relief=FLAT,bg="#9250b8",fg="white",activeforeground="white",borderwidth=0,activebackground="#9250b8",highlightbackground="white",text = 'Menu',compound="center",font=Font_button,command=menu_home)
     button_retour_home.place(x=590,y=450)
     button_prec = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#a86cc3",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#a86cc3",highlightbackground="#7159b5",text = 'précédent',compound="center",font=Font_button,command=fin2)
     button_prec.place(x=25,y=450)   

@@ -521,5 +521,5 @@ commande_img_2 = PhotoImage(file="PyBot-NSI-1ere\images\commande.png")
 ent2 = PhotoImage(file="PyBot-NSI-1ere\images\ent-2.png")   
 ent2 = ent2.subsample(2)
 
-fin()
+menu_home()
 frame_p.mainloop()

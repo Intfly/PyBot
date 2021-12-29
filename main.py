@@ -1,3 +1,4 @@
+from abc import abstractproperty
 from tkinter import *
 import tkinter.font as font
 import webbrowser
@@ -91,7 +92,7 @@ def ftn_commande(cmd):
         ent_fx.place(x=200,y=185,width=350,height=50)
         button_next = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#9250b9",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#9250b9",highlightbackground="#7159b5",text = 'suivant',compound="center",font=Font_button,command=recupfois_ping)
         button_next.place(x=600,y=450)
-    if cmd == 1:
+    elif cmd == 1:
             can.delete(ALL)
             for widgets in frame_p.winfo_children():
                 if widgets.winfo_class() != 'Canvas':
@@ -111,7 +112,7 @@ def ftn_commande(cmd):
             button_retour_home.place(x=25,y=450) 
             button_next = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#9250b9",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#9250b9",highlightbackground="#7159b5",text = 'suivant',compound="center",font=Font_button,command=recupfois_move)
             button_next.place(x=600,y=450)
-    if cmd == 4:
+    elif cmd == 4:
         can.delete(ALL)
         for widgets in frame_p.winfo_children():
             if widgets.winfo_class() != 'Canvas':
@@ -125,7 +126,7 @@ def ftn_commande(cmd):
         nb_fois_deco.place(x=200,y=185,width=350,height=50)
         button_next = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#9250b9",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#9250b9",highlightbackground="#7159b5",text = 'suivant',compound="center",font=Font_button,command=recupfois_deco)
         button_next.place(x=600,y=450)         
-    if cmd == 5:
+    elif cmd == 5:
         can.delete(ALL)
         for widgets in frame_p.winfo_children():
             if widgets.winfo_class() != 'Canvas':
@@ -155,7 +156,7 @@ def ftn_commande(cmd):
         c1.place(x=200,y=150)
         c2 = Checkbutton(frame_p, text="écoute:",variable=c2_v, onvalue=1, offvalue=0,bg="white",activebackground="white",font=Font_desc,fg="#686868",activeforeground="#686868",command=change)
         c2.place(x=400,y=150)
-    if cmd == 6:
+    elif cmd == 6:
         can.delete(ALL)
         for widgets in frame_p.winfo_children():
             if widgets.winfo_class() != 'Canvas':
@@ -169,7 +170,7 @@ def ftn_commande(cmd):
         message_message.place(x=200,y=185,width=350,height=50)
         button_next = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#9250b9",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#9250b9",highlightbackground="#7159b5",text = 'suivant',compound="center",font=Font_button,command=recup_message)
         button_next.place(x=600,y=450)
-    if cmd == 7:
+    elif cmd == 7:
         can.delete(ALL)
         for widgets in frame_p.winfo_children():
             if widgets.winfo_class() != 'Canvas':
@@ -182,10 +183,15 @@ def ftn_commande(cmd):
         message_on_join = Entry(frame_p,relief=SUNKEN,bg="white",font =Font_button,fg="#686868")
         message_on_join.place(x=200,y=185,width=350,height=50)
         button_next = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#9250b9",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#9250b9",highlightbackground="#7159b5",text = 'suivant',compound="center",font=Font_button,command=recup_message_on_join)
-        button_next.place(x=600,y=450)     
+        button_next.place(x=600,y=450)
+    else:
+        interm()
+act_hlp=0
 def recup_act():
     global act
+    global act_hlp
     act=act_nm.get()
+    act_hlp = 1
     interm()
 
 def recupfois_ping():
@@ -288,6 +294,7 @@ def tuto_4():
     can.create_image(0,0,image=linear_gradient_1)
     can.create_image(10,10,image=img_bck_white)
     can.create_text(150,50,fill="#7256B2",text="installation",font=Font_titre_gros)
+    can.create_text(375,250,fill="white",text=f"vous pouvez maintenant passez à \n      l'étape de création du bot",font=Font_PyBot)
     button_retour_home = Button(frame_p,image = button_open_link,width= 120,height=25,relief=FLAT,bg="#7259b6",fg="white",activeforeground="white",borderwidth=0,activebackground="#7259b6",highlightbackground="white",text = 'Menu',compound="center",font=Font_button,command=menu_home)
     button_retour_home.place(x=575,y=450)   
 #premier menu en cliquant sur "nouveau" 
@@ -318,6 +325,11 @@ def nouveau_1():
 def nouveau_2():
     global next_helper
     global ent_nm
+    global token
+    global identifiant
+    if next_helper ==6:
+        token = ent_tok.get()
+        identifiant = ent_id.get()
     next_helper = 7
     can.delete(ALL)
     for widgets in frame_p.winfo_children():
@@ -406,7 +418,9 @@ def cmd_pref():
     can.create_image(375,215,image = ent2)
     can.create_text(250,170,fill="grey",text="préfixe",font=Font_desc)
     ent_pref = Entry(frame_p,relief=SUNKEN,bg="white",font =Font_button,fg="#686868")
-    ent_pref.place(x=200,y=185,width=350,height=50)     
+    ent_pref.place(x=200,y=185,width=350,height=50)
+    button_retour_home = Button(frame_p,image = button_open_link,width= 120,height=25,relief=FLAT,bg="#af75c7",fg="white",activeforeground="white",borderwidth=0,activebackground="#af75c7",highlightbackground="white",text = 'Menu',compound="center",font=Font_button,command=menu_home)
+    button_retour_home.place(x=25,y=450)     
     button_next = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#9250b9",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#9250b9",highlightbackground="#7159b5",text = 'génération',compound="center",font=Font_button,command=generation)
     button_next.place(x=600,y=450)
 
@@ -419,13 +433,13 @@ def generation():
     can.create_image(0,0, image= linear_gradient_2)
     f= open("main_bot.py","w+")
     f.write(f"import discord\nfrom discord.ext import commands \nimport asyncio\n\nintents= discord.Intents().all()\nbot = commands.Bot(command_prefix='{prefix}', intents=intents)\n@bot.event\nasync def on_ready():\n    print('bot pret')\n")
+    if act_hlp == 1:
+        if c1_v.get() == 1:
+            f.write(f"  await bot.change_presence(activity=discord.Game(name='{act}'))")
+        if c2_v.get() == 1:
+            f.write(f"  await bot.change_presence(activity=discord.Activity(type = discord.ActivityType.listening, name = '{act}'))\n")
     for i in vect_s2:
         for k,v in i.items():
-            if v == 5:
-                if c1_v.get() == 1:
-                    f.write(f"  await bot.change_presence(activity=discord.Game(name='{act}'))")
-                if c2_v.get() == 1:
-                    f.write(f"  await bot.change_presence(activity=discord.Activity(type = discord.ActivityType.listening, name = '{act}'))")
             if v==0:
                 f.write(f"\n@bot.command()\nasync def {k}(ctx, member:discord.Member):\n   if ctx.message.author.guild_permissions.administrator==True:\n        for i in range({fois_ping}):\n            await ctx.send(member.mention)\n            await asyncio.sleep(.5)\n\n")
             if v == 1:
@@ -442,6 +456,35 @@ def generation():
                 f.write(f"\n@bot.event\nasync def on_member_join(member):\n    await member.send(f'{message_join}')\n")
             if v == 8:
                 f.write(f"\nimport random\n@bot.command()\nasync def {k}(ctx, num_un: str, num_deux: str):\n    await ctx.reply(random.randint(num_un,num_deux))\n\n")
+    f.write(f"\n\nbot.run('{token}')")
+    can.create_image(375,215,image = ent2)
+    can.create_text(385,220,fill="#a365c1",text="bien joué, votre code est prêt!",font=Font_PyBot)
+    button_retour_home = Button(frame_p,image = button_open_link,width= 120,height=25,relief=FLAT,bg="#af75c7",fg="white",activeforeground="white",borderwidth=0,activebackground="#af75c7",highlightbackground="white",text = 'Menu',compound="center",font=Font_button,command=menu_home)
+    button_retour_home.place(x=25,y=450)     
+    button_next = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#9250b9",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#9250b9",highlightbackground="#7159b5",text = 'suivant',compound="center",font=Font_button,command=fin)
+    button_next.place(x=600,y=450) 
+
+def fin():
+    can.delete(ALL)
+    for widgets in frame_p.winfo_children():
+        if widgets.winfo_class() != 'Canvas':
+            widgets.destroy()
+    can.create_image(0,0, image= linear_gradient_2)
+    can.create_image(378,235,image=ent)
+    can.create_text(385,220,fill="#383c4c",text=f"les commandes {guillemets}kick{guillemets},{guillemets}ban{guillemets},\netc... fonctinnent en mentionnant l'utilisateur\naprès avoir marqué le nom de la fonction.\nLa fonction chiffre random marche en\nmettant deux chiffre servant de bordes\naprès le nom de la commande ",font=Font_desc)
+    button_next = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#9250b9",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#9250b9",highlightbackground="#7159b5",text = 'suivant',compound="center",font=Font_button,command=fin2)
+    button_next.place(x=600,y=450)
+def fin2():
+    can.delete(ALL)
+    for widgets in frame_p.winfo_children():
+        if widgets.winfo_class() != 'Canvas':
+            widgets.destroy()
+    can.create_image(0,0, image= linear_gradient_2)
+    can.create_image(378,235,image=ent)
+    can.create_text(385,220,fill="#383c4c",text=f"-si vous avez pip, éxécutez le\nfichier {guillemets}installation.exe{guillemets}\n\n-sinon installez les bibliothèques manquantes\nmanuellement\n\n\nvous pourrez ensuite éxécuter le \nfichier python et le Bot fonctionnera",font=Font_desc)
+    button_retour_home = Button(frame_p,image = button_open_link,width= 120,height=25,relief=FLAT,bg="#af75c7",fg="white",activeforeground="white",borderwidth=0,activebackground="#af75c7",highlightbackground="white",text = 'Menu',compound="center",font=Font_button,command=menu_home)
+    button_retour_home.place(x=590,y=450)
+
 #ouvre des liens différents en fonction de la fenêtre dans laquelle le bouton est cliqué
 def open_link():
     global olhelper
@@ -478,5 +521,5 @@ commande_img_2 = PhotoImage(file="PyBot-NSI-1ere\images\commande.png")
 ent2 = PhotoImage(file="PyBot-NSI-1ere\images\ent-2.png")   
 ent2 = ent2.subsample(2)
 
-menu_home()
+fin()
 frame_p.mainloop()

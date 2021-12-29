@@ -12,8 +12,10 @@ fen.title("PyBot")
 frame_p = Frame(fen)
 frame_p.pack(side="top", expand=True, fill="both")
 
+
 can = Canvas(frame_p,bg="white", height=500, width=750)
 can.place(x=-2,y=-2)
+
 
 #variables utiles dans le code
 olhelper = 0
@@ -63,7 +65,6 @@ def interface_suivante():
         else:
             can.create_text(375,465,fill="red",text="le nom ne peut pas être vide",font=Font_desc)
 
-
 def ftn_commande(cmd):
     global vect_s
     global c1_v
@@ -77,7 +78,7 @@ def ftn_commande(cmd):
     global message_message
     global message_on_join
     vect_s={}
-    vect_s[x]=cmd#ainsi, le dico ne peut contenir que une seule valeur/un sel nom vu qu'il est reset à chaque clique sur un bouton
+    vect_s[x]=cmd
     if cmd == 0:
         can.delete(ALL)
         for widgets in frame_p.winfo_children():
@@ -99,10 +100,10 @@ def ftn_commande(cmd):
                     widgets.destroy()
             can.create_image(0,0, image= linear_gradient_2)
             can.create_image(378,235,image=ent)
-            can.create_text(265,110,fill="grey",text="Channel 1",font=Font_desc)
+            can.create_text(275,110,fill="grey",text="ID du Channel 1",font=Font_desc)
             cha1 = Entry(frame_p,relief=SUNKEN,bg="white",font =Font_button,fg="#686868")
             cha1.place(x=225,y=120,width=300,height=50)
-            can.create_text(265,200,fill="grey",text="Channel 2",font=Font_desc)
+            can.create_text(275,200,fill="grey",text="ID du Channel 2",font=Font_desc)
             cha2 = Entry(frame_p,relief=SUNKEN,bg="white",font =Font_titre,fg="#686868")
             cha2.place(x=225,y=210,width=300,height=50)
             can.create_text(290,290,fill="grey",text="nombre de fois",font=Font_desc)
@@ -186,6 +187,7 @@ def ftn_commande(cmd):
         button_next.place(x=600,y=450)
     else:
         interm()
+
 act_hlp=0
 def recup_act():
     global act
@@ -203,7 +205,7 @@ def recupfois_move():
     global fois_move
     global chan1
     global chan2
-    fois_move=nb_fois_move.get()
+    fois_move=nb_fois_move.get()/2
     chan1 = cha1.get()
     chan2= cha2.get()
     interm()
@@ -222,8 +224,6 @@ def recup_message_on_join():
     global message_join
     message_join = message_on_join.get()
     interm()
-
-
 
 #premier menu en cliquant sur "tutoriel" 
 def tuto_1():
@@ -302,7 +302,8 @@ def tuto_4():
     button_retour_home = Button(frame_p,image = button_open_link,width= 120,height=25,relief=FLAT,bg="#7259b6",fg="white",activeforeground="white",borderwidth=0,activebackground="#7259b6",highlightbackground="white",text = 'Menu',compound="center",font=Font_button,command=menu_home)
     button_retour_home.place(x=575,y=450)
     button_prec = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#6f60c0",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#6f60c0",highlightbackground="#7159b5",text = 'précédent',compound="center",font=Font_button,command=tuto_3)
-    button_prec.place(x=150,y=450)   
+    button_prec.place(x=25,y=450)
+
 #premier menu en cliquant sur "nouveau" 
 def nouveau_1():
     global ent_tok
@@ -315,7 +316,7 @@ def nouveau_1():
             widgets.destroy()
     can.create_image(0,0, image= linear_gradient_2)
     can.create_image(378,235,image=ent)
-    can.create_text(265,140,fill="grey",text="ID du Bot",font=Font_desc)
+    can.create_text(265,140,fill="grey",text="ID de l'application",font=Font_desc)
     ent_id = Entry(frame_p,relief=SUNKEN,bg="white",font =Font_button,fg="#686868")
     ent_id.place(x=225,y=150,width=300,height=50)
     can.create_text(290,260,fill="grey",text="TOKEN du Bot",font=Font_desc)
@@ -350,7 +351,7 @@ def nouveau_2():
     ent_nm.place(x=200,y=185,width=350,height=50)
     button_next = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#9250b9",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#9250b9",highlightbackground="#7159b5",text = 'suivant',compound="center",font=Font_button,command=interface_suivante)
     button_next.place(x=600,y=450)
-    button_prec = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#6f60c0",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#6f60c0",highlightbackground="#7159b5",text = 'précédent',compound="center",font=Font_button,command=nouveau_1)
+    button_prec = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#a86cc3",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#a86cc3",highlightbackground="#7159b5",text = 'précédent',compound="center",font=Font_button,command=nouveau_1)
     button_prec.place(x=150,y=450)   
 
 def nouveau_3():
@@ -396,9 +397,8 @@ def nouveau_3():
     
     button_retour_home = Button(frame_p,image = button_open_link,width= 120,height=25,relief=FLAT,bg="#af75c7",fg="white",activeforeground="white",borderwidth=0,activebackground="#af75c7",highlightbackground="white",text = 'Menu',compound="center",font=Font_button,command=menu_home)
     button_retour_home.place(x=25,y=450)
-    button_prec = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#6f60c0",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#6f60c0",highlightbackground="#7159b5",text = 'précédent',compound="center",font=Font_button,command=nouveau_2)
+    button_prec = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#a86cc3",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#a86cc3",highlightbackground="#7159b5",text = 'précédent',compound="center",font=Font_button,command=nouveau_2)
     button_prec.place(x=150,y=450)   
-
 
 def interm():
     global next_helper
@@ -415,7 +415,7 @@ def interm():
     pref.place(x=223,y=250)
     button_retour_home = Button(frame_p,image = button_open_link,width= 120,height=25,relief=FLAT,bg="#af75c7",fg="white",activeforeground="white",borderwidth=0,activebackground="#af75c7",highlightbackground="white",text = 'Menu',compound="center",font=Font_button,command=menu_home)
     button_retour_home.place(x=25,y=450)
-    button_prec = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#6f60c0",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#6f60c0",highlightbackground="#7159b5",text = 'précédent',compound="center",font=Font_button,command=nouveau_2)
+    button_prec = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#a86cc3",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#a86cc3",highlightbackground="#7159b5",text = 'précédent',compound="center",font=Font_button,command=nouveau_2)
     button_prec.place(x=150,y=450)   
 
 def cmd_pref():
@@ -435,7 +435,7 @@ def cmd_pref():
     button_retour_home.place(x=25,y=450)     
     button_next = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#9250b9",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#9250b9",highlightbackground="#7159b5",text = 'génération',compound="center",font=Font_button,command=generation)
     button_next.place(x=600,y=450)
-    button_prec = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#6f60c0",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#6f60c0",highlightbackground="#7159b5",text = 'précédent',compound="center",font=Font_button,command=interm)
+    button_prec = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#a86cc3",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#a86cc3",highlightbackground="#7159b5",text = 'précédent',compound="center",font=Font_button,command=interm)
     button_prec.place(x=150,y=450)   
 
 def generation():
@@ -449,27 +449,27 @@ def generation():
     f.write(f"import discord\nfrom discord.ext import commands \nimport asyncio\n\nintents= discord.Intents().all()\nbot = commands.Bot(command_prefix='{prefix}', intents=intents)\n@bot.event\nasync def on_ready():\n    print('bot pret')\n")
     if act_hlp == 1:
         if c1_v.get() == 1:
-            f.write(f"  await bot.change_presence(activity=discord.Game(name='{act}'))")
+            f.write(f"      await bot.change_presence(activity=discord.Game(name='{act}'))")
         if c2_v.get() == 1:
-            f.write(f"  await bot.change_presence(activity=discord.Activity(type = discord.ActivityType.listening, name = '{act}'))\n")
+            f.write(f"      await bot.change_presence(activity=discord.Activity(type = discord.ActivityType.listening, name = '{act}'))\n")
     for i in vect_s2:
         for k,v in i.items():
             if v==0:
                 f.write(f"\n@bot.command()\nasync def {k}(ctx, member:discord.Member):\n   if ctx.message.author.guild_permissions.administrator==True:\n        for i in range({fois_ping}):\n            await ctx.send(member.mention)\n            await asyncio.sleep(.5)\n\n")
             if v == 1:
-                f.write(f"\n@bot.command()\nasync def ms(ctx, member: discord.Member):\n    ChannelA= bot.get_channel({chan1})\n    ChannelB= bot.get_channel({chan2})\n    if ctx.message.author.guild_permissions.move_members==True:\n        for i in range({fois_move}):\n            await member.move_to(ChannelA, reason='un utilisateur a utilisé la commande de move')\n            await asyncio.sleep(1.5)\n            await member.move_to(ChannelB, reason='un utilisateur a utilisé la commande de move')\n            await asyncio.sleep(1.5)\n")
+                f.write(f"\n@bot.command()\nasync def {k}(ctx, member: discord.Member):\n    ChannelA= bot.get_channel({chan1})\n    ChannelB= bot.get_channel({chan2})\n    if ctx.message.author.guild_permissions.move_members==True:\n        for i in range({fois_move}):\n            await member.move_to(ChannelA, reason='un utilisateur s'est servi de la commande de move')\n            await asyncio.sleep(1.5)\n            await member.move_to(ChannelB, reason='un utilisateur s'est servi de la commande de move')\n            await asyncio.sleep(1.5)\n")
             if v == 2:
                 f.write(f"\n@bot.command()\nasync def {k}(ctx, member:discord.Member):\n    if ctx.message.author.guild_permissions.administrator==True:\n        await member.kick()\n\n")
             if v == 3:
                 f.write(f"\n@bot.command()\nasync def {k}(ctx, member:discord.Member):\n    if ctx.message.author.guild_permissions.administrator==True:\n        await member.ban()\n\n")
             if v == 4:
-                f.write(f"\n@bot.command()\nasync def {k}(ctx, member: discord.Member):\n    if ctx.message.author.guild_permissions.move_members==True:\n        for i in range({fois_deco}):\n            await member.move_to(None, reason='un utilisateur a utilise la commande de deconnection')\n            await asyncio.sleep(1.5)\n\n")
+                f.write(f"\n@bot.command()\nasync def {k}(ctx, member: discord.Member):\n    if ctx.message.author.guild_permissions.move_members==True:\n        for i in range({fois_deco}):\n            await member.move_to(None, reason='un utilisateur s'est servi de la commande de deconnection')\n            await asyncio.sleep(1.5)\n\n")
             if v == 6:
                 f.write(f"\n@bot.command()\nasync def {k}(ctx):\n    await ctx.reply('{message_ftn}')\n\n")
             if v == 7:
                 f.write(f"\n@bot.event\nasync def on_member_join(member):\n    await member.send(f'{message_join}')\n")
             if v == 8:
-                f.write(f"\nimport random\n@bot.command()\nasync def {k}(ctx, num_un: str, num_deux: str):\n    await ctx.reply(random.randint(num_un,num_deux))\n\n")
+                f.write(f"\nimport random\n@bot.command()\nasync def {k}(ctx, num_un: int, num_deux: int):\n    await ctx.reply(random.randint(num_un,num_deux))\n\n")
     f.write(f"\n\nbot.run('{token}')")
     can.create_image(375,215,image = ent2)
     can.create_text(385,220,fill="#a365c1",text="bien joué, votre code est prêt!",font=Font_PyBot)
@@ -477,7 +477,7 @@ def generation():
     button_retour_home.place(x=25,y=450)     
     button_next = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#9250b9",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#9250b9",highlightbackground="#7159b5",text = 'suivant',compound="center",font=Font_button,command=fin)
     button_next.place(x=600,y=450)
-    button_prec = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#6f60c0",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#6f60c0",highlightbackground="#7159b5",text = 'précédent',compound="center",font=Font_button,command=cmd_pref)
+    button_prec = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#a86cc3",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#a86cc3",highlightbackground="#7159b5",text = 'précédent',compound="center",font=Font_button,command=cmd_pref)
     button_prec.place(x=150,y=450)    
 
 def fin():
@@ -488,11 +488,12 @@ def fin():
     can.create_image(0,0, image= linear_gradient_2)
     can.create_image(378,235,image=ent)
     can.create_text(385,220,fill="#383c4c",text=f"les commandes {guillemets}kick{guillemets},{guillemets}ban{guillemets},\netc... fonctinnent en mentionnant l'utilisateur\naprès avoir marqué le nom de la fonction.\nLa fonction chiffre random marche en\nmettant deux chiffre servant de bordes\naprès le nom de la commande ",font=Font_desc)
+    button_retour_home = Button(frame_p,image = button_open_link,width= 120,height=25,relief=FLAT,bg="#af75c7",fg="white",activeforeground="white",borderwidth=0,activebackground="#af75c7",highlightbackground="white",text = 'Menu',compound="center",font=Font_button,command=menu_home)
+    button_retour_home.place(x=25,y=450)
     button_next = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#9250b9",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#9250b9",highlightbackground="#7159b5",text = 'suivant',compound="center",font=Font_button,command=fin2)
     button_next.place(x=600,y=450)
-    button_prec = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#6f60c0",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#6f60c0",highlightbackground="#7159b5",text = 'précédent',compound="center",font=Font_button,command=generation)
-    button_prec.place(x=150,y=450)
-       
+
+
 def fin2():
     can.delete(ALL)
     for widgets in frame_p.winfo_children():
@@ -502,15 +503,38 @@ def fin2():
     can.create_image(378,235,image=ent)
     can.create_text(385,220,fill="#383c4c",text=f"-si vous avez pip, éxécutez le\nfichier {guillemets}installation.exe{guillemets}\n\n-sinon installez les bibliothèques manquantes\nmanuellement\n\n\nvous pourrez ensuite éxécuter le \nfichier python et le Bot fonctionnera",font=Font_desc)
     button_retour_home = Button(frame_p,image = button_open_link,width= 120,height=25,relief=FLAT,bg="#af75c7",fg="white",activeforeground="white",borderwidth=0,activebackground="#af75c7",highlightbackground="white",text = 'Menu',compound="center",font=Font_button,command=menu_home)
+    button_retour_home.place(x=25,y=450)
+    button_prec = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#a86cc3",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#a86cc3",highlightbackground="#7159b5",text = 'précédent',compound="center",font=Font_button,command=fin)
+    button_prec.place(x=150,y=450)
+    button_next = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#9250b9",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#9250b9",highlightbackground="#7159b5",text = 'suivant',compound="center",font=Font_button,command=fin3)
+    button_next.place(x=600,y=450)
+
+def fin3():
+    global olhelper 
+    olhelper = 2
+    can.delete(ALL)
+    for widgets in frame_p.winfo_children():
+        if widgets.winfo_class() != 'Canvas':
+            widgets.destroy()
+    can.create_image(0,0, image= linear_gradient_2)
+    can.create_image(378,235,image=ent)
+    button_link= Button(frame_p,image = button_open_link,width= 150,height=25,relief=FLAT,bg="white",fg="white",activeforeground="white",borderwidth=0,activebackground="white",highlightbackground="white",text = 'cliquez ici',compound="center",font=Font_button,command=open_link)
+    button_link.place(x=250,y=200)
+    can.create_text(385,150,fill="#383c4c",text=f"ajoutez votre Bot sur des serveurs \nen cliquant sur le bouton",font=Font_desc)
+    can.create_text(285,270,fill="#383c4c",text=f"ou avec l'url:",font=Font_desc)
+    button_retour_home = Button(frame_p,image = button_open_link,width= 120,height=25,relief=FLAT,bg="#af75c7",fg="white",activeforeground="white",borderwidth=0,activebackground="#af75c7",highlightbackground="white",text = 'Menu',compound="center",font=Font_button,command=menu_home)
     button_retour_home.place(x=590,y=450)
-    button_prec = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#6f60c0",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#6f60c0",highlightbackground="#7159b5",text = 'précédent',compound="center",font=Font_button,command=fin)
-    button_prec.place(x=150,y=450)   
+    button_prec = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#a86cc3",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#a86cc3",highlightbackground="#7159b5",text = 'précédent',compound="center",font=Font_button,command=fin2)
+    button_prec.place(x=25,y=450)   
+   
 
 #ouvre des liens différents en fonction de la fenêtre dans laquelle le bouton est cliqué
 def open_link():
     global olhelper
     if olhelper == 1:
         webbrowser.open_new("https://discord.com/developers/applications")
+    if olhelper == 2:
+        webbrowser.open_new(f"https://discord.com/api/oauth2/authorize?client_id={identifiant}&permissions=8&scope=bot")
 
 #les polices principales du programme
 Font_button = font.Font(family="Abadi MT",size=14,weight="bold")

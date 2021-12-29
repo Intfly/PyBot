@@ -244,7 +244,7 @@ def tuto_1():
     button_next.place(x=575,y=450)
     can.create_image(250,340, image=DDPconnexion_resized)
     button_retour_home = Button(frame_p,image = button_open_link,width= 120,height=25,relief=FLAT,bg="#6f60c0",fg="white",activeforeground="white",borderwidth=0,activebackground="#6f62c3",highlightbackground="white",text = 'Menu',compound="center",font=Font_button,command=menu_home)
-    button_retour_home.place(x=25,y=450)
+    button_retour_home.place(x=25,y=450)  
 
 def tuto_2():
     global next_helper
@@ -265,6 +265,8 @@ def tuto_2():
     button_next.place(x=575,y=450)
     button_retour_home = Button(frame_p,image = button_open_link,width= 120,height=25,relief=FLAT,bg="#6f60c0",fg="white",activeforeground="white",borderwidth=0,activebackground="#6f62c3",highlightbackground="white",text = 'Menu',compound="center",font=Font_button,command=menu_home)
     button_retour_home.place(x=25,y=450)
+    button_prec = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#6f60c0",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#6f60c0",highlightbackground="#7159b5",text = 'précédent',compound="center",font=Font_button,command=tuto_1)
+    button_prec.place(x=150,y=450)
 
 def tuto_3():
     global next_helper
@@ -285,6 +287,8 @@ def tuto_3():
     button_next.place(x=575,y=450)
     button_retour_home = Button(frame_p,image = button_open_link,width= 120,height=25,relief=FLAT,bg="#6f60c0",fg="white",activeforeground="white",borderwidth=0,activebackground="#6f62c3",highlightbackground="white",text = 'Menu',compound="center",font=Font_button,command=menu_home)
     button_retour_home.place(x=25,y=450)
+    button_prec = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#6f60c0",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#6f60c0",highlightbackground="#7159b5",text = 'précédent',compound="center",font=Font_button,command=tuto_2)
+    button_prec.place(x=150,y=450)
 
 def tuto_4():
     can.delete(ALL)
@@ -296,7 +300,9 @@ def tuto_4():
     can.create_text(150,50,fill="#7256B2",text="installation",font=Font_titre_gros)
     can.create_text(375,250,fill="white",text=f"vous pouvez maintenant passez à \n      l'étape de création du bot",font=Font_PyBot)
     button_retour_home = Button(frame_p,image = button_open_link,width= 120,height=25,relief=FLAT,bg="#7259b6",fg="white",activeforeground="white",borderwidth=0,activebackground="#7259b6",highlightbackground="white",text = 'Menu',compound="center",font=Font_button,command=menu_home)
-    button_retour_home.place(x=575,y=450)   
+    button_retour_home.place(x=575,y=450)
+    button_prec = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#6f60c0",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#6f60c0",highlightbackground="#7159b5",text = 'précédent',compound="center",font=Font_button,command=tuto_3)
+    button_prec.place(x=150,y=450)   
 #premier menu en cliquant sur "nouveau" 
 def nouveau_1():
     global ent_tok
@@ -343,7 +349,9 @@ def nouveau_2():
     ent_nm = Entry(frame_p,relief=SUNKEN,bg="white",font =Font_button,fg="#686868")
     ent_nm.place(x=200,y=185,width=350,height=50)
     button_next = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#9250b9",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#9250b9",highlightbackground="#7159b5",text = 'suivant',compound="center",font=Font_button,command=interface_suivante)
-    button_next.place(x=600,y=450)   
+    button_next.place(x=600,y=450)
+    button_prec = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#6f60c0",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#6f60c0",highlightbackground="#7159b5",text = 'précédent',compound="center",font=Font_button,command=nouveau_1)
+    button_prec.place(x=150,y=450)   
 
 def nouveau_3():
     global cmd
@@ -388,6 +396,8 @@ def nouveau_3():
     
     button_retour_home = Button(frame_p,image = button_open_link,width= 120,height=25,relief=FLAT,bg="#af75c7",fg="white",activeforeground="white",borderwidth=0,activebackground="#af75c7",highlightbackground="white",text = 'Menu',compound="center",font=Font_button,command=menu_home)
     button_retour_home.place(x=25,y=450)
+    button_prec = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#6f60c0",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#6f60c0",highlightbackground="#7159b5",text = 'précédent',compound="center",font=Font_button,command=nouveau_2)
+    button_prec.place(x=150,y=450)   
 
 
 def interm():
@@ -405,6 +415,8 @@ def interm():
     pref.place(x=223,y=250)
     button_retour_home = Button(frame_p,image = button_open_link,width= 120,height=25,relief=FLAT,bg="#af75c7",fg="white",activeforeground="white",borderwidth=0,activebackground="#af75c7",highlightbackground="white",text = 'Menu',compound="center",font=Font_button,command=menu_home)
     button_retour_home.place(x=25,y=450)
+    button_prec = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#6f60c0",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#6f60c0",highlightbackground="#7159b5",text = 'précédent',compound="center",font=Font_button,command=nouveau_2)
+    button_prec.place(x=150,y=450)   
 
 def cmd_pref():
     global next_helper
@@ -423,6 +435,8 @@ def cmd_pref():
     button_retour_home.place(x=25,y=450)     
     button_next = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#9250b9",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#9250b9",highlightbackground="#7159b5",text = 'génération',compound="center",font=Font_button,command=generation)
     button_next.place(x=600,y=450)
+    button_prec = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#6f60c0",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#6f60c0",highlightbackground="#7159b5",text = 'précédent',compound="center",font=Font_button,command=interm)
+    button_prec.place(x=150,y=450)   
 
 def generation():
     prefix= ent_pref.get()
@@ -462,7 +476,9 @@ def generation():
     button_retour_home = Button(frame_p,image = button_open_link,width= 120,height=25,relief=FLAT,bg="#af75c7",fg="white",activeforeground="white",borderwidth=0,activebackground="#af75c7",highlightbackground="white",text = 'Menu',compound="center",font=Font_button,command=menu_home)
     button_retour_home.place(x=25,y=450)     
     button_next = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#9250b9",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#9250b9",highlightbackground="#7159b5",text = 'suivant',compound="center",font=Font_button,command=fin)
-    button_next.place(x=600,y=450) 
+    button_next.place(x=600,y=450)
+    button_prec = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#6f60c0",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#6f60c0",highlightbackground="#7159b5",text = 'précédent',compound="center",font=Font_button,command=cmd_pref)
+    button_prec.place(x=150,y=450)    
 
 def fin():
     can.delete(ALL)
@@ -474,6 +490,9 @@ def fin():
     can.create_text(385,220,fill="#383c4c",text=f"les commandes {guillemets}kick{guillemets},{guillemets}ban{guillemets},\netc... fonctinnent en mentionnant l'utilisateur\naprès avoir marqué le nom de la fonction.\nLa fonction chiffre random marche en\nmettant deux chiffre servant de bordes\naprès le nom de la commande ",font=Font_desc)
     button_next = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#9250b9",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#9250b9",highlightbackground="#7159b5",text = 'suivant',compound="center",font=Font_button,command=fin2)
     button_next.place(x=600,y=450)
+    button_prec = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#6f60c0",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#6f60c0",highlightbackground="#7159b5",text = 'précédent',compound="center",font=Font_button,command=generation)
+    button_prec.place(x=150,y=450)
+       
 def fin2():
     can.delete(ALL)
     for widgets in frame_p.winfo_children():
@@ -484,6 +503,8 @@ def fin2():
     can.create_text(385,220,fill="#383c4c",text=f"-si vous avez pip, éxécutez le\nfichier {guillemets}installation.exe{guillemets}\n\n-sinon installez les bibliothèques manquantes\nmanuellement\n\n\nvous pourrez ensuite éxécuter le \nfichier python et le Bot fonctionnera",font=Font_desc)
     button_retour_home = Button(frame_p,image = button_open_link,width= 120,height=25,relief=FLAT,bg="#af75c7",fg="white",activeforeground="white",borderwidth=0,activebackground="#af75c7",highlightbackground="white",text = 'Menu',compound="center",font=Font_button,command=menu_home)
     button_retour_home.place(x=590,y=450)
+    button_prec = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#6f60c0",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#6f60c0",highlightbackground="#7159b5",text = 'précédent',compound="center",font=Font_button,command=fin)
+    button_prec.place(x=150,y=450)   
 
 #ouvre des liens différents en fonction de la fenêtre dans laquelle le bouton est cliqué
 def open_link():

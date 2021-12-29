@@ -1,3 +1,2 @@
 # PyBot-NSI-1ere
-wip
-a basic school homework using tkinter (this library is empty as hell)
+a basic school homework using tkinter. It allows people without knowledge about python to create their own discord bot.

@@ -2,6 +2,7 @@ from tkinter import *
 import tkinter.font as font
 import webbrowser
 
+
 fen = Tk()
 fen.geometry("750x500")
 fen.title("PyBot")
@@ -67,7 +68,13 @@ def ftn_commande(cmd):
     global c1_v
     global c2_v
     global act_nm  
-    global ent_fx   
+    global ent_fx
+    global nb_fois_move
+    global cha1
+    global cha2
+    global nb_fois_deco   
+    global message_message
+    global message_on_join
     vect_s={}
     vect_s[x]=cmd#ainsi, le dico ne peut contenir que une seule valeur/un sel nom vu qu'il est reset à chaque clique sur un bouton
     if cmd == 0:
@@ -82,7 +89,7 @@ def ftn_commande(cmd):
         can.create_text(295,170,fill="grey",text="nombre de fois",font=Font_desc)
         ent_fx = Entry(frame_p,relief=SUNKEN,bg="white",font =Font_button,fg="#686868")
         ent_fx.place(x=200,y=185,width=350,height=50)
-        button_next = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#9250b9",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#9250b9",highlightbackground="#7159b5",text = 'suivant',compound="center",font=Font_button,command=recupfois_move)
+        button_next = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#9250b9",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#9250b9",highlightbackground="#7159b5",text = 'suivant',compound="center",font=Font_button,command=recupfois_ping)
         button_next.place(x=600,y=450)
     if cmd == 1:
             can.delete(ALL)
@@ -96,16 +103,28 @@ def ftn_commande(cmd):
             cha1.place(x=225,y=150,width=300,height=50)
             can.create_text(290,260,fill="grey",text="channel 2",font=Font_desc)
             cha2 = Entry(frame_p,relief=SUNKEN,bg="white",font =Font_titre,fg="#686868")
-            cha2.place(x=225,y=270,width=300,height=50)
+            cha2.place(x=225,y=205,width=300,height=50)
             can.create_text(290,260,fill="grey",text="channel 2",font=Font_desc)
-            nb_fois = Entry(frame_p,relief=SUNKEN,bg="white",font =Font_titre,fg="#686868")
-            nb_fois.place(x=225,y=270,width=300,height=50)
-            button_next = Button(frame_p,image = button_open_link,width= 125,height=25,relief=FLAT,bg="white",fg="white",activeforeground="white",borderwidth=0,activebackground="white",highlightbackground="#7159b5",text = 'perdus?',compound="center",font=Font_button,command=tuto_1)
-            button_next.place(x=180,y=365)
+            nb_fois_move = Entry(frame_p,relief=SUNKEN,bg="white",font =Font_titre,fg="#686868")
+            nb_fois_move.place(x=225,y=270,width=300,height=50)
             button_retour_home = Button(frame_p,image = button_open_link,width= 120,height=25,relief=FLAT,bg="#af75c7",fg="white",activeforeground="white",borderwidth=0,activebackground="#af75c7",highlightbackground="white",text = 'Menu',compound="center",font=Font_button,command=menu_home)
             button_retour_home.place(x=25,y=450) 
-            button_next = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#9250b9",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#9250b9",highlightbackground="#7159b5",text = 'suivant',compound="center",font=Font_button,command=interface_suivante)
-            button_next.place(x=600,y=450) 
+            button_next = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#9250b9",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#9250b9",highlightbackground="#7159b5",text = 'suivant',compound="center",font=Font_button,command=recupfois_move)
+            button_next.place(x=600,y=450)
+    if cmd ==3:
+        can.delete(ALL)
+        for widgets in frame_p.winfo_children():
+            if widgets.winfo_class() != 'Canvas':
+                widgets.destroy()   
+        can.create_image(0,0, image = linear_gradient_2)
+        button_retour_home = Button(frame_p,image = button_open_link,width= 120,height=25,relief=FLAT,bg="#af75c7",fg="white",activeforeground="white",borderwidth=0,activebackground="#af75c7",highlightbackground="white",text = 'Menu',compound="center",font=Font_button,command=menu_home)
+        button_retour_home.place(x=25,y=450)
+        can.create_image(375,215,image = ent2)
+        can.create_text(295,170,fill="grey",text="nombre de fois (1 fois toutes les 1.5s) ",font=Font_desc)
+        nb_fois_deco = Entry(frame_p,relief=SUNKEN,bg="white",font =Font_button,fg="#686868")
+        nb_fois_deco.place(x=200,y=185,width=350,height=50)
+        button_next = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#9250b9",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#9250b9",highlightbackground="#7159b5",text = 'suivant',compound="center",font=Font_button,command=recupfois_deco)
+        button_next.place(x=600,y=450)         
     if cmd == 4:
         can.delete(ALL)
         for widgets in frame_p.winfo_children():
@@ -136,7 +155,34 @@ def ftn_commande(cmd):
         c1.place(x=200,y=150)
         c2 = Checkbutton(frame_p, text="écoute:",variable=c2_v, onvalue=1, offvalue=0,bg="white",activebackground="white",font=Font_desc,fg="#686868",activeforeground="#686868",command=change)
         c2.place(x=400,y=150)
-        
+    if cmd == 5:
+        can.delete(ALL)
+        for widgets in frame_p.winfo_children():
+            if widgets.winfo_class() != 'Canvas':
+                widgets.destroy()   
+        can.create_image(0,0, image = linear_gradient_2)
+        button_retour_home = Button(frame_p,image = button_open_link,width= 120,height=25,relief=FLAT,bg="#af75c7",fg="white",activeforeground="white",borderwidth=0,activebackground="#af75c7",highlightbackground="white",text = 'Menu',compound="center",font=Font_button,command=menu_home)
+        button_retour_home.place(x=25,y=450)
+        can.create_image(375,215,image = ent2)
+        can.create_text(295,170,fill="grey",text="message à répondre",font=Font_desc)
+        message_message = Entry(frame_p,relief=SUNKEN,bg="white",font =Font_button,fg="#686868")
+        message_message.place(x=200,y=185,width=350,height=50)
+        button_next = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#9250b9",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#9250b9",highlightbackground="#7159b5",text = 'suivant',compound="center",font=Font_button,command=recup_message)
+        button_next.place(x=600,y=450)
+    if cmd == 6:
+        can.delete(ALL)
+        for widgets in frame_p.winfo_children():
+            if widgets.winfo_class() != 'Canvas':
+                widgets.destroy()   
+        can.create_image(0,0, image = linear_gradient_2)
+        button_retour_home = Button(frame_p,image = button_open_link,width= 120,height=25,relief=FLAT,bg="#af75c7",fg="white",activeforeground="white",borderwidth=0,activebackground="#af75c7",highlightbackground="white",text = 'Menu',compound="center",font=Font_button,command=menu_home)
+        button_retour_home.place(x=25,y=450)
+        can.create_image(375,215,image = ent2)
+        can.create_text(295,170,fill="grey",text="message à envoyer(en mp)",font=Font_desc)
+        message_on_join = Entry(frame_p,relief=SUNKEN,bg="white",font =Font_button,fg="#686868")
+        message_on_join.place(x=200,y=185,width=350,height=50)
+        button_next = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#9250b9",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#9250b9",highlightbackground="#7159b5",text = 'suivant',compound="center",font=Font_button,command=recup_message_on_join)
+        button_next.place(x=600,y=450)     
 def recup_act():
     global act
     act=act_nm.get()
@@ -149,6 +195,29 @@ def recupfois_ping():
 
 def recupfois_move():
     global fois_move
+    global chan1
+    global chan2
+    fois_move=nb_fois_move.get()
+    chan1 = cha1.get()
+    chan2= cha2.get()
+    interm()
+
+def recupfois_deco():
+    global fois_deco
+    fois_deco = nb_fois_deco.get()
+    interm()
+
+def recup_message():
+    global message_ftn
+    message_ftn= message_message.get()
+    interm()
+
+def recup_message_on_join():
+    global message_join
+    message_join = message_on_join.get()
+    interm()
+
+
 
 #premier menu en cliquant sur "tutoriel" 
 def tuto_1():
@@ -290,7 +359,7 @@ def nouveau_3():
             commande['text'] = "kick"
         elif i == 3:
             commande['text'] = "ban"
-        elif i == 3:
+        elif i == :
             commande['text'] = "déconnecte quelqu'un"
         elif i == 4:
             commande['text'] = "rich presence"
@@ -299,7 +368,7 @@ def nouveau_3():
         elif i == 6:
             commande['text'] = "rejoins serv"
         elif i == 7:
-            commande['text'] = "calcul"
+            commande['text'] = "nombre random"
         elif i == 8:
             commande['text'] = "préfixe"
             commande['image'] = button_next_img_resized
@@ -358,19 +427,17 @@ def generation():
                 if c2_v.get() == 1:
                     f.write(f"  await bot.change_presence(activity=discord.Activity(type = discord.ActivityType.listening, name = '{act}'))")
             if v==0:
-                f.write(f"\n@bot.command()\nasync def ps(ctx, member:discord.Member):\n   if ctx.message.author.guild_permissions.administrator==True:\n        for i in range({fois_move}):\n            await ctx.send(member.mention)\n            await asyncio.sleep(.5)\n\n")
+                f.write(f"\n@bot.command()\nasync def {k}(ctx, member:discord.Member):\n   if ctx.message.author.guild_permissions.administrator==True:\n        for i in range({fois_ping}):\n            await ctx.send(member.mention)\n            await asyncio.sleep(.5)\n\n")
             if v == 1:
-                print(k)
+                f.write(f"\n@bot.command()\nasync def {k}(ctx, member:discord.Member):\n    if ctx.message.author.guild_permissions.administrator==True:\n        await member.kick()\n\n")
             if v == 2:
-                print(k)
+                f.write(f"\n@bot.command()\nasync def {k}(ctx, member:discord.Member):\n    if ctx.message.author.guild_permissions.administrator==True:\n        await member.ban()\n\n")
             if v == 3:
-                print(k)
+                f.write(f"\n@bot.command()\nasync def {k}(ctx, member: discord.Member):\n    if ctx.message.author.guild_permissions.move_members==True:\n        for i in range({fois_deco}):\n            await member.move_to(None, reason='quelqu'un a utilisé la commande de déconnection')\n            await asyncio.sleep(1.5)\n\n")
             if v == 5:
-                print(k)
+                f.write(f"\n@bot.command()\nasync def {k}(ctx):\n    await ctx.reply('{message_ftn}')\n\n")
             if v == 6:
-                print(k)
-            if v == 7:
-                print(k)
+                f.write(f"\nimport random\n@bot.command()\nasync def {k}(ctx, num_un: str, num_deux: str):\n    await ctx.reply({random.randint(num_un,num_deux)})\n\n")
 
 
 #ouvre des liens différents en fonction de la fenêtre dans laquelle le bouton est cliqué

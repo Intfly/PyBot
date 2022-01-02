@@ -26,7 +26,7 @@ vect_s2=[]
 
 
 def supp_a():
-    for widgets in frame_p.winfo_children():#parcourt les enfants de la frame "frame_p" et les supprime tous sauf le canva
+    for widgets in frame_p.winfo_children():#parcourt les enfants de la frame "frame_p" et les supprime tous sauf le canvas
         if widgets.winfo_class() != 'Canvas':
             widgets.destroy()
 def menu_home():

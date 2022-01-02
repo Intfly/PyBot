@@ -19,16 +19,16 @@ can.place(x=-2,y=-2)
 
 #variables utiles dans le code
 olhelper = 0
-next_helper = 0
 home_hlp = 0
 guillemets='"'
 vect_s2=[]
 
 
 def supp_a():
-    for widgets in frame_p.winfo_children():#parcourt les enfants de la frame "frame_p" et les supprime tous sauf le canvas
+    for widgets in frame_p.winfo_children():#parcourt les enfants de la frame "frame_p" et les supprimes tous sauf le canvas
         if widgets.winfo_class() != 'Canvas':
             widgets.destroy()
+
 def menu_home():
     global home_hlp
     if home_hlp !=0:  
@@ -42,26 +42,7 @@ def menu_home():
     can.create_text(70,100,fill="white",text="PyBot",font=Font_PyBot)
     can.create_text(160,135,fill="white",text="Créez votre propre bot discord",font=Font_desc)
     home_hlp = 1
-
-#fonction du bouton suivant
-def interface_suivante():
-    global vect
-    global nom_ftn
-    if next_helper == 6:
-        tok=ent_tok.get()
-        ide=ent_id.get()
-        if  tok != "" and ide != "":#un token/ID est une chaîne alphanumérique(uniquement numérique pour l'ID) qui ne peut pas être nulle, donc l'entrée ne peut pas être vide 
-            vect=[tok,ide]
-            nouveau_2()
-        else:
-            can.create_text(375,465,fill="red",text="le TOKEN/ID ne peut pas être nul",font=Font_desc)
-    elif next_helper == 7:
-        nom_ftn=ent_nm.get()
-        if nom_ftn != "":
-            erreur_nom()
-        else:
-            can.create_text(375,465,fill="red",text="le nom ne peut pas être vide",font=Font_desc)
-
+        
 def ftn_commande(cmd):
     global vect_s
     global c1_v
@@ -94,11 +75,11 @@ def ftn_commande(cmd):
             supp_a()
             can.create_image(0,0, image= linear_gradient_2)
             can.create_image(378,235,image=ent)
-            can.create_text(275,110,fill="grey",text="ID du Channel 1",font=Font_desc)
+            can.create_text(290,110,fill="grey",text="ID du Channel 1",font=Font_desc)
             cha1 = Entry(frame_p,relief=SUNKEN,bg="white",font =Font_button,fg="#686868")
             cha1.place(x=225,y=120,width=300,height=50)
-            can.create_text(275,200,fill="grey",text="ID du Channel 2",font=Font_desc)
-            cha2 = Entry(frame_p,relief=SUNKEN,bg="white",font =Font_titre,fg="#686868")
+            can.create_text(290,200,fill="grey",text="ID du Channel 2",font=Font_desc)
+            cha2 = Entry(frame_p,relief=SUNKEN,bg="white",font =Font_button,fg="#686868")
             cha2.place(x=225,y=210,width=300,height=50)
             can.create_text(290,290,fill="grey",text="nombre de fois",font=Font_desc)
             nb_fois_move = Entry(frame_p,relief=SUNKEN,bg="white",font =Font_titre,fg="#686868")
@@ -192,7 +173,7 @@ def recupfois_move():
     global fois_move
     global chan1
     global chan2
-    fois_move=nb_fois_move.get()/2
+    fois_move=int(nb_fois_move.get())//2
     chan1 = cha1.get()
     chan2= cha2.get()
     interm()
@@ -215,8 +196,7 @@ def recup_message_on_join():
 #premier menu en cliquant sur "tutoriel" 
 def tuto_1():
     global olhelper
-    global next_helper
-    olhelper,next_helper = 1,1
+    olhelper = 1
     can.delete(ALL)
     supp_a()
     can.create_image(0,0,image=linear_gradient_1)
@@ -232,8 +212,7 @@ def tuto_1():
     button_retour_home.place(x=25,y=450)  
 
 def tuto_2():
-    global next_helper
-    next_helper = 2
+
     can.delete(ALL)
     supp_a()
     can.create_image(0,0,image=linear_gradient_1)
@@ -252,8 +231,6 @@ def tuto_2():
     button_prec.place(x=150,y=450)
 
 def tuto_3():
-    global next_helper
-    next_helper = 3
     can.delete(ALL)
     supp_a()
     can.create_image(0,0,image=linear_gradient_1)
@@ -287,8 +264,6 @@ def tuto_4():
 def nouveau_1():
     global ent_tok
     global ent_id
-    global next_helper
-    next_helper = 6
     can.delete(ALL)
     supp_a()
     can.create_image(0,0, image= linear_gradient_2)#UI
@@ -297,19 +272,28 @@ def nouveau_1():
     ent_id = Entry(frame_p,relief=SUNKEN,bg="white",font =Font_button,fg="#686868")#entrée dans laquelle on insère l'identifiant de l'app
     ent_id.place(x=225,y=150,width=300,height=50)
     can.create_text(290,260,fill="grey",text="TOKEN du Bot",font=Font_desc)
-    ent_tok = Entry(frame_p,relief=SUNKEN,bg="white",font =Font_titre,fg="#686868")#entrée dans laquelle on insère le token du bot
+    ent_tok = Entry(frame_p,relief=SUNKEN,bg="white",font =Font_button,fg="#686868")#entrée dans laquelle on insère le token du bot
     ent_tok.place(x=225,y=270,width=300,height=50)
     button_next = Button(frame_p,image = button_open_link,width= 125,height=25,relief=FLAT,bg="white",fg="white",activeforeground="white",borderwidth=0,activebackground="white",text = 'perdus?',compound="center",font=Font_button,command=tuto_1)
     button_next.place(x=180,y=365)
     button_retour_home = Button(frame_p,image = button_open_link,width= 120,height=25,relief=FLAT,bg="#af75c7",fg="white",activeforeground="white",borderwidth=0,activebackground="#af75c7",text = 'Menu',compound="center",font=Font_button,command=menu_home)
     button_retour_home.place(x=25,y=450) 
-    button_next = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#9250b9",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#9250b9",text = 'suivant',compound="center",font=Font_button,command=interface_suivante)
+    button_next = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#9250b9",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#9250b9",text = 'suivant',compound="center",font=Font_button,command=token_identifiant)
     button_next.place(x=600,y=450) 
 
+#fonction du bouton suivant
+def token_identifiant():
+    global vect
+    tok=ent_tok.get()
+    ide=ent_id.get()
+    if  tok != "" and ide != "":#un token/ID est une chaîne alphanumérique(uniquement numérique pour l'ID) qui ne peut pas être nulle, donc l'entrée ne peut pas être vide 
+        vect=[tok,ide]
+        nouveau_2()
+    else:
+        can.create_text(375,465,fill="red",text="le TOKEN/ID ne peut pas être nul",font=Font_desc)
+
 def nouveau_2():
-    global next_helper
     global ent_nm
-    next_helper = 7
     can.delete(ALL)
     supp_a()
     can.create_image(0,0, image = linear_gradient_2)
@@ -319,25 +303,27 @@ def nouveau_2():
     can.create_text(295,170,fill="grey",text="nom de la commande",font=Font_desc)
     ent_nm = Entry(frame_p,relief=SUNKEN,bg="white",font =Font_button,fg="#686868")
     ent_nm.place(x=200,y=185,width=350,height=50)
-    button_next = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#9250b9",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#9250b9",text = 'suivant',compound="center",font=Font_button,command=interface_suivante)
+    button_next = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#9250b9",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#9250b9",text = 'suivant',compound="center",font=Font_button,command=erreur_nom)
     button_next.place(x=600,y=450)
     button_prec = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#a86cc3",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#a86cc3",text = 'précédent',compound="center",font=Font_button,command=nouveau_1)
     button_prec.place(x=150,y=450)   
 
-def erreur_nom():
-
-    try:
-        int(nom_ftn)
-    except:
-        nouveau_3()
+def erreur_nom():#tests pour valider le nom, message d'erreur sinon
+    global nom_ftn
+    nom_ftn=ent_nm.get()
+    if nom_ftn != "":#le nom de la fonction ne peut pas être vide, sinon l'appel de fonction est impossible 
+        try:
+            int(nom_ftn)        
+        except:#si une erreur se produit(donc que le nom n'est pas un integer) alors le programme continue son exécution,sinon il crééra un texte sur l'écran
+            nouveau_3()
+        else:
+            can.create_text(375,265,fill="red",text="le nom doit contenir au moins une lettre",font=Font_desc)
     else:
-        can.create_text(375,265,fill="red",text="le nom doit contenir au moins une lettre",font=Font_desc)
+        can.create_text(375,465,fill="red",text="le nom ne peut pas être vide",font=Font_desc)
 
 def nouveau_3():
     global cmd
-    global next_helper
     cmd=0
-    next_helper = 8
     can.delete(ALL)
     supp_a()
     can.create_image(0,0, image= linear_gradient_2)
@@ -378,8 +364,6 @@ def nouveau_3():
     button_prec.place(x=150,y=450)   
 
 def interm():
-    global next_helper
-    next_helper = 7
     can.delete(ALL)
     supp_a()
     can.create_image(0,0, image= linear_gradient_2)
@@ -393,9 +377,7 @@ def interm():
    
 
 def cmd_pref():
-    global next_helper
     global ent_pref
-    next_helper = 8
     can.delete(ALL)
     supp_a()
     can.create_image(0,0, image= linear_gradient_2)
@@ -420,9 +402,9 @@ def generation():
     f.write(f"import discord\nfrom discord.ext import commands \nimport asyncio\n\nintents= discord.Intents().all()\nbot = commands.Bot(command_prefix='{prefix}', intents=intents)\n@bot.event\nasync def on_ready():\n    print('bot pret')\n")
     if act_hlp == 1:
         if c1_v.get() == 1:
-            f.write(f"      await bot.change_presence(activity=discord.Game(name='{act}'))")
+            f.write(f"    await bot.change_presence(activity=discord.Game(name='{act}'))")
         if c2_v.get() == 1:
-            f.write(f"      await bot.change_presence(activity=discord.Activity(type = discord.ActivityType.listening, name = '{act}'))\n")
+            f.write(f"    await bot.change_presence(activity=discord.Activity(type = discord.ActivityType.listening, name = '{act}'))\n")
     for i in vect_s2:
         for k,v in i.items():
             if v==0:
@@ -486,7 +468,7 @@ def fin3():
     button_link= Button(frame_p,image = button_open_link,width= 150,height=25,relief=FLAT,bg="white",fg="white",activeforeground="white",borderwidth=0,activebackground="white",text = 'cliquez ici',compound="center",font=Font_button,command=open_link)
     button_link.place(x=250,y=200)
     can.create_text(385,150,fill="#383c4c",text=f"ajoutez votre Bot sur des serveurs \nen cliquant sur le bouton",font=Font_desc)
-    can.create_text(375,300,fill="#383c4c",text=f"ou avec l'url:\nhttps://discord.com/api/oauth2/authorize?\nclient_id={vect[1]}&permissions=8&scope=bot",font=Font_desc)#le lien est personnalisé en fonction de l'indentifiant de l'applicaiton
+    can.create_text(375,300,fill="#383c4c",text=f"ou avec l'url:\nhttps://discord.com/api/oauth2/authorize?\nclient_id={vect[1]}&\npermissions=8&scope=bot",font=Font_desc)#le lien est personnalisé en fonction de l'indentifiant de l'applicaiton
     button_retour_home = Button(frame_p,image = button_open_link,width= 120,height=25,relief=FLAT,bg="#9250b8",fg="white",activeforeground="white",borderwidth=0,activebackground="#9250b8",text = 'Menu',compound="center",font=Font_button,command=menu_home)
     button_retour_home.place(x=590,y=450)
     button_prec = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#a86cc3",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#a86cc3",text = 'précédent',compound="center",font=Font_button,command=fin2)

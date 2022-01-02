@@ -46,19 +46,19 @@ def menu_home():
 #fonction du bouton suivant
 def interface_suivante():
     global vect
-    global x 
+    global nom_ftn
     if next_helper == 6:
         tok=ent_tok.get()
         ide=ent_id.get()
-        if  tok != "" and ide != "":#un token/ID est une chaîne alphanumérique( uniquement numérique pour l'ID) qui ne peut pas être nulle, donc l'entrée ne peut pas être vide 
+        if  tok != "" and ide != "":#un token/ID est une chaîne alphanumérique(uniquement numérique pour l'ID) qui ne peut pas être nulle, donc l'entrée ne peut pas être vide 
             vect=[tok,ide]
             nouveau_2()
         else:
             can.create_text(375,465,fill="red",text="le TOKEN/ID ne peut pas être nul",font=Font_desc)
     elif next_helper == 7:
-        x=ent_nm.get()
-        if x != "":
-            nouveau_3()
+        nom_ftn=ent_nm.get()
+        if nom_ftn != "":
+            erreur_nom()
         else:
             can.create_text(375,465,fill="red",text="le nom ne peut pas être vide",font=Font_desc)
 
@@ -75,7 +75,7 @@ def ftn_commande(cmd):
     global message_message
     global message_on_join
     vect_s={}
-    vect_s[x]=cmd
+    vect_s[nom_ftn]=cmd
     #permet de modifier l'UI en fontion de la valeur de cmd(et donc du bouton sur lequel l'utilisateur a cliqué) afin de lui permettre d'insérer des paramètres si nécessaires
     if cmd == 0:
         can.delete(ALL)
@@ -309,7 +309,6 @@ def nouveau_1():
 def nouveau_2():
     global next_helper
     global ent_nm
-
     next_helper = 7
     can.delete(ALL)
     supp_a()
@@ -324,6 +323,15 @@ def nouveau_2():
     button_next.place(x=600,y=450)
     button_prec = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#a86cc3",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#a86cc3",text = 'précédent',compound="center",font=Font_button,command=nouveau_1)
     button_prec.place(x=150,y=450)   
+
+def erreur_nom():
+
+    try:
+        int(nom_ftn)
+    except:
+        nouveau_3()
+    else:
+        can.create_text(375,265,fill="red",text="le nom doit contenir au moins une lettre",font=Font_desc)
 
 def nouveau_3():
     global cmd

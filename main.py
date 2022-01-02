@@ -460,7 +460,7 @@ def fin2():
     supp_a()
     can.create_image(0,0, image= linear_gradient_2)
     can.create_image(378,235,image=ent)
-    can.create_text(385,220,fill="#383c4c",text=f"-si vous avez pip, éxécutez le\nfichier {guillemets}installation.exe{guillemets}\n\n-sinon installez les bibliothèques manquantes\nmanuellement\n\n\nvous pourrez ensuite éxécuter le \nfichier python et le Bot fonctionnera",font=Font_desc)
+    can.create_text(385,220,fill="#383c4c",text=f"-si vous avez pip, installez la \nbibliothèque discord.py\n\n-ouvrez un cmd et tapez la commande:\npy -3 -m pip install -U discord.py",font=Font_desc)
     button_retour_home = Button(frame_p,image = button_open_link,width= 120,height=25,relief=FLAT,bg="#af75c7",fg="white",activeforeground="white",borderwidth=0,activebackground="#af75c7",text = 'Menu',compound="center",font=Font_button,command=menu_home)
     button_retour_home.place(x=25,y=450)
     button_prec = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#a86cc3",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#a86cc3",text = 'précédent',compound="center",font=Font_button,command=fin)
@@ -523,5 +523,5 @@ commande_img_2 = PhotoImage(file="PyBot-NSI-1ere\images\commande.png")
 ent2 = PhotoImage(file="PyBot-NSI-1ere\images\ent-2.png")   
 ent2 = ent2.subsample(2)
 
-menu_home()#lance le menu
+fin2()#lance le menu
 frame_p.mainloop()

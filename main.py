@@ -28,8 +28,7 @@ def supp_a():
             widgets.destroy()
 
 def menu_home():
-    global home_hlp  
-    supp_a()
+    supp_a()# appel de la fonction permettant de supprimer l'entièreté des widgets sauf le canvas
     can.delete(ALL)
     button_home_act_t = Button(frame_p,image = button_home_img_resized,width= 180,height=40,relief=FLAT,bg="white",fg="white",activeforeground="white",borderwidth=0,activebackground="white",text = 'tutoriel',compound="center",font=Font_button,command=tuto_1)
     button_home_act_n = Button(frame_p,image = button_home_img_resized,width= 180,height=40,relief=FLAT,bg="white",fg="white",activeforeground="white",borderwidth=0,activebackground="white",text = 'nouveau',compound="center",font=Font_button,command=nouveau_1)
@@ -38,7 +37,6 @@ def menu_home():
     can.create_image(-40,0,image=linear_gradent_home)
     can.create_text(70,100,fill="white",text="PyBot",font=Font_PyBot)
     can.create_text(160,135,fill="white",text="Créez votre propre bot discord",font=Font_desc)
-    home_hlp = 1
         
 def ftn_commande(cmd):
     global vect_s
@@ -92,7 +90,7 @@ def ftn_commande(cmd):
         button_retour_home = Button(frame_p,image = button_open_link,width= 120,height=25,relief=FLAT,bg="#af75c7",fg="white",activeforeground="white",borderwidth=0,activebackground="#af75c7",text = 'Menu',compound="center",font=Font_button,command=menu_home)
         button_retour_home.place(x=25,y=450)
         can.create_image(375,215,image = ent2)
-        can.create_text(320,170,fill="grey",text="nombre de fois (1 fois toutes les 1.5s) ",font=Font_desc)
+        can.create_text(320,170,fill="grey",text="nombre de fois (1 fois toutes les 1.5s)",font=Font_desc)
         nb_fois_deco = Entry(frame_p,relief=SUNKEN,bg="white",font =Font_button,fg="#686868")
         nb_fois_deco.place(x=200,y=185,width=350,height=50)
         button_next = Button(frame_p,image = button_next_img_resized,width= 120,height=25,relief=FLAT,bg="#9250b9",fg="#6e63c5",activeforeground="#6e63c5",borderwidth=0,activebackground="#9250b9",text = 'suivant',compound="center",font=Font_button,command=recupfois_deco)

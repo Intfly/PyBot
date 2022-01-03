@@ -19,7 +19,6 @@ can.place(x=-2,y=-2)
 
 #variables utiles dans le code
 olhelper = 0
-home_hlp = 0
 guillemets='"'
 vect_s2=[]
 
@@ -30,9 +29,8 @@ def supp_a():
             widgets.destroy()
 
 def menu_home():
-    global home_hlp
-    if home_hlp !=0:  
-        supp_a()
+    global home_hlp  
+    supp_a()
     can.delete(ALL)
     button_home_act_t = Button(frame_p,image = button_home_img_resized,width= 180,height=40,relief=FLAT,bg="white",fg="white",activeforeground="white",borderwidth=0,activebackground="white",text = 'tutoriel',compound="center",font=Font_button,command=tuto_1)
     button_home_act_n = Button(frame_p,image = button_home_img_resized,width= 180,height=40,relief=FLAT,bg="white",fg="white",activeforeground="white",borderwidth=0,activebackground="white",text = 'nouveau',compound="center",font=Font_button,command=nouveau_1)

@@ -175,22 +175,18 @@ def recupfois_ping():
 def recupfois_move():
     global fois_move
     global chan1
-    global chan2
-    try:#si les entrées sont des nombres, aucune erreur ne se produit donc la fonction interm() est exécutée,sinon un texte apparaît
+    global chan2         
+    chan1 = cha1.get()
+    chan2= cha2.get()
+    try:#si les entrées sont des nombres, aucune erreur ne se produit donc la fonction interm() est exécutée,sinon un texte apparaît  
+        int(chan1)
+        int(chan2)
         int(nb_fois_move.get())        
     except:
         can.create_text(375,465,fill="red",text="l'entrée doit être un nombre",font=Font_desc)
     else:
         fois_move=int(nb_fois_move.get())//2
-        chan1 = cha1.get()
-        chan2= cha2.get()
-        try:
-            int(chan1)
-            int(chan2)        
-        except:
-            can.create_text(375,465,fill="red",text="l'entrée doit être un nombre",font=Font_desc)
-        else:
-            interm()
+        interm()
 
 
 def recupfois_deco():

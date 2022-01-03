@@ -100,7 +100,7 @@ def ftn_commande(cmd):
     elif cmd == 5:
         can.delete(ALL)
         supp_a()
-        def change():
+        def change():#change une variable en fonction de quelle Ckeckbox et cliquée, 0 = non cliquée et 1 = cliqué
             if c1_v.get()==1:
                 str_var.set("joue à:")
             if c2_v.get()==1:
@@ -164,21 +164,45 @@ def recup_act():
 def recupfois_ping():
     global fois_ping
     fois_ping=ent_fx.get()
-    interm()
+    try:#si l'entrée est un nombre, aucune erreur ne se produit donc la fonction interm() est exécutée,sinon un texte apparaît
+        int(fois_ping)        
+    except:
+        can.create_text(375,265,fill="red",text="l'entrée doit être un nombre",font=Font_desc)
+    else:
+        interm()
+
 
 def recupfois_move():
     global fois_move
     global chan1
     global chan2
-    fois_move=int(nb_fois_move.get())//2
-    chan1 = cha1.get()
-    chan2= cha2.get()
-    interm()
+    try:#si les entrées sont des nombres, aucune erreur ne se produit donc la fonction interm() est exécutée,sinon un texte apparaît
+        int(nb_fois_move.get())        
+    except:
+        can.create_text(375,465,fill="red",text="l'entrée doit être un nombre",font=Font_desc)
+    else:
+        fois_move=int(nb_fois_move.get())//2
+        chan1 = cha1.get()
+        chan2= cha2.get()
+        try:
+            int(chan1)
+            int(chan2)        
+        except:
+            can.create_text(375,465,fill="red",text="l'entrée doit être un nombre",font=Font_desc)
+        else:
+            interm()
+
 
 def recupfois_deco():
     global fois_deco
     fois_deco = nb_fois_deco.get()
-    interm()
+    try:#si l'entrée est un nombre, aucune erreur ne se produit donc la fonction interm() est exécutée,sinon un texte apparaît
+        int(fois_deco)        
+    except:
+        can.create_text(375,265,fill="red",text="l'entrée doit être un nombre",font=Font_desc)
+    else:
+        interm()
+
 
 def recup_message():
     global message_ftn
@@ -394,7 +418,7 @@ def generation():
     can.delete(ALL)
     supp_a()
     can.create_image(0,0, image= linear_gradient_2)
-    f= open("main_bot.py","w+")#créé le fichier "main_bot.py" avec l'argument "w+" signifiant write
+    f= open("main_bot.py","w+")#créé le fichier "main_bot.py" l'argument "w" ouvre en écriture, en effaçant le contenu du fichier ou en le modifiant
     f.write(f"import discord\nfrom discord.ext import commands \nimport asyncio\n\nintents= discord.Intents().all()\nbot = commands.Bot(command_prefix='{prefix}', intents=intents)\n@bot.event\nasync def on_ready():\n    print('bot pret')\n")
     if act_hlp == 1:
         if c1_v.get() == 1:

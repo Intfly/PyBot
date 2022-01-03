@@ -1,4 +1,3 @@
-from abc import abstractproperty
 from tkinter import *
 import tkinter.font as font
 import webbrowser
